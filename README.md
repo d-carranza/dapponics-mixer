@@ -13,3 +13,5 @@ Must include:
 
 ### **Introduction:**
 Allright this is the begining of this project. And from here I'm going to keep building and reshaping this app until is functional and perfect.
+
+Django project is initialized.
