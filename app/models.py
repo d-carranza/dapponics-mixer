@@ -5,6 +5,8 @@ from django.db import models
 class User(AbstractUser):
     pass
 
+# TODO create new tables to store relevant info about the user's collection
+
 # class Collection(models.Model):
 #     creator = models.ForeignKey(User, )
 #     supply = models.IntegerField()
