@@ -36,12 +36,12 @@ To do that I will use Python and Django in the backend to manage the database an
 
 **Developing Process Notes**
 
+**Notes 1.0**
 
-
-
-
-
-
-Allright this is the begining of this project. And from here I'm going to keep building and reshaping this app until is functional and perfect.
-
-Django project is initialized.
+Once I initialized the Django project, the app, the initial model and the superuser
+-I need to create the HTML templates including a layout.
+-Is crucial to choose the righ selection for the database models.
+-I need to figure out how to merge the trait's pngs.
+-I need to learn proper png management with javascript assuming only URLs from these pngs will be requested as post and stored in the backend's database.
+-I need to rewatch the React class to make sure I use the framework properly.
+-Also I need to figure out how Cloudinary work, a web image host, potential candidate for this app.
