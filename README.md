@@ -45,3 +45,15 @@ Once I initialized the Django project, the app, the initial model and the superu
 -I need to learn proper png management with javascript assuming only URLs from these pngs will be requested as post and stored in the backend's database.
 -I need to rewatch the React class to make sure I use the framework properly.
 -Also I need to figure out how Cloudinary work, a web image host, potential candidate for this app.
+
+**Notes 2.0**
+
+Receiving user's input (User clicks save, database updates. When user logs in, the data is prepopulated in the fields )
+To polish the performance of this app im considering to store only the seed in the database and not the result after mixing. 
+
+The user will input the traits for each part, sorted by layer and with its rarity. This could be represented by a matrix of elements being the parts columns and the traits for each part the rows. User will be able to expand this matrix to add a new part as well as adding new traits for a part. In every cell of this table user should input the image for a given trait, its name and its rarity.
+
+This way the database will have a table containing all the traits for eash user. User class will also have a new model called input that will be a json with all the input data in order.
+
+Providing user an output, data from the database is runned through the mixing algorithm n times (supply) and when algorithm is completed user downloads a zip named "<user>'s_Collection" that contains two folders, images with all the pngs and metadata with all the json.
+
