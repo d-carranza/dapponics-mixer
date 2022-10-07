@@ -1,0 +1,31 @@
+{% extends "app/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>{{ request.user.username }}'s Collection</h2>
+
+    <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
+    <hr>
+
+    <div>
+        upload yout traits and define the rarity and the supply
+    </div>
+
+
+    <div>
+        buttons
+        <div>
+            <input class="btn btn-primary" type="submit" value="Save">
+            button save (saves info in database)
+            TODO: conectar boton
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Mix">
+            button mix (calls database, applies algorithm, buffers data, download zip)
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'app/app.js' %}"></script>
+{% endblock %}

@@ -57,3 +57,6 @@ This way the database will have a table containing all the traits for eash user.
 
 Providing user an output, data from the database is runned through the mixing algorithm n times (supply) and when algorithm is completed user downloads a zip named "<user>'s_Collection" that contains two folders, images with all the pngs and metadata with all the json.
 
+**Notes 3.0**
+
+HTML templates created, login logout register views added
