@@ -60,3 +60,7 @@ Providing user an output, data from the database is runned through the mixing al
 **Notes 3.0**
 
 HTML templates created, login logout register views added
+
+**Notes 4.0**
+
+asdf
