@@ -17,7 +17,7 @@ One of the most commons types of NFT collections are the trait collections.
 A NFT trait collection consists in a serie of tokens that has a set of traits, these traits are randomly selected inside certain parameters and this is what makes every token a unique 1/1 collectible.
 
 There are 5 steps to create a NFT trait collection:
-1. An artist draw or design every trait for every part separatelly in a transparent .png layer. For example a hair part can be blonde, brown or black traits, while an eyes part can be blue, green, sunglasses etc...
+1. An artist draws or designs every trait for every part separatelly in a transparent .png layer. For example a hair part can be blonde, brown or black traits, while an eyes part can be blue, green, sunglasses etc...
 2. Once every trait is designed, the creator must decide what is the rarity for every trait, a lower percentage of a given trait means it will appear less in the collection and as it will be more rare it will potentially have more collector value.
 3. Then the traits pass through an algorithm that creates n tokens png, being n the total supply, merging the layers for each randomly selected trait following the rarity percentages.
 4. At the same tame the tokens are created, the metadata (a .json file with all the part-trait pairs a given token has) is also stored next to the token .png
@@ -63,4 +63,10 @@ HTML templates created, login logout register views added
 
 **Notes 4.0**
 
-asdf
+Database models created.
+V1 for testing will consist in a table to input 4 traits.
+Following steps:
+1. make a working form to transfer the user input to the backend
+2. store the data sucessfully in the database
+For this I have to learn proper img file management
+TODO: Constrain user input to avoid bugs and provide feedback

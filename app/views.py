@@ -74,3 +74,32 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "app/register.html")
+
+
+
+    # traits = {
+    #     {
+    #         "type": "left",
+    #         "value": "pink",
+    #         "rarity": "60",
+    #         "image": "???",
+    #     },
+    #     {
+    #         "type": "left",
+    #         "value": "green",
+    #         "rarity": "40",
+    #         "image": "???",
+    #     },
+    #     {
+    #         "type": "right",
+    #         "value": "blue",
+    #         "rarity": "60",
+    #         "image": "???",
+    #     },
+    #     {
+    #         "type": "right",
+    #         "value": "yellow",
+    #         "rarity": "40",
+    #         "image": "???",
+    #     }
+    # }

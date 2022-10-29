@@ -7,22 +7,55 @@
     <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
     <hr>
 
-    <div>
-        upload yout traits and define the rarity and the supply
-    </div>
 
 
+
+    <table class="table">
+        V1
+        <form action="">
+            <thead>
+                <tr>
+                    <th><input type="text" name="Part1" placeholder="Part Name"></th>
+                    <th><input type="text" name="Part2" placeholder="Part Name"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div><input type="file" name="Part1png1" accept="image/png" /></div>
+                        <span><input type="text" name="Part1Trait1" placeholder="Trait Name"></span>
+                        <span><input type="text" name="Part1Rarity1" placeholder="Rarity"></span>
+                    </td>
+                    <td>
+                        <div><input type="file" name="Part2png1" accept="image/png" /></div>
+                        <span><input type="text" name="Part2Trait1" placeholder="Trait Name"></span>
+                        <span><input type="text" name="Part2Trait2" placeholder="Rarity"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div><input type="file" name="Part1png2" accept="image/png" /></div>
+                        <span><input type="text" name="Part1Trait2" placeholder="Trait Name"></span>
+                        <span><input type="text" name="Part1Rarity2" placeholder="Rarity"></span>
+                    </td>
+                    <td>
+                        <div><input type="file" name="Part2png2" accept="image/png" /></div>
+                        <span><input type="text" name="Part2Trait2" placeholder="Trait Name"></span>
+                        <span><input type="text" name="Part2Rarity2" placeholder="Rarity"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </form>
+    </table>
+
     <div>
-        buttons
-        <div>
-            <input class="btn btn-primary" type="submit" value="Save">
-            button save (saves info in database)
-            TODO: conectar boton
-        </div>
-        <div>
-            <input class="btn btn-primary" type="submit" value="Mix">
-            button mix (calls database, applies algorithm, buffers data, download zip)
-        </div>
+        <span>
+            <input class="btn btn-primary" type="submit" value="1 Save">
+        </span>
+        <span>
+            <input type="text" name="Rarity Name" placeholder="Supply">
+            <input class="btn btn-primary" type="submit" value="2 Mix">
+        </span>
     </div>
 {% endblock %}
 
