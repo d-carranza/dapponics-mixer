@@ -68,5 +68,5 @@ V1 for testing will consist in a table to input 4 traits.
 Following steps:
 1. make a working form to transfer the user input to the backend
 2. store the data sucessfully in the database
-For this I have to learn proper img file management
+For this I have to learn proper img file management and how to fetch with react
 TODO: Constrain user input to avoid bugs and provide feedback
