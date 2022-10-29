@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-
+# This is for the image management "I'm not sure if is right or needed"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
