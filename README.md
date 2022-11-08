@@ -76,3 +76,4 @@ I decided to start with the frontend first.
 Need to revamp all the structure of this project to include React and allow React to take control of the things happening in the DOM.
 In order to do that I installed npm modules and configured React.
 In the lecture we saw react embedded inside the HTML file, but to be more tidy this time I will be using react in independent javascript files.
+App.js in components will contain all the react code for the frontend. Now my goal is to make a great user friendly interface where user can input the different parts of the collection and every trait in each part.
