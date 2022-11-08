@@ -2,61 +2,57 @@
 {% load static %}
 
 {% block body %}
-    <h2>{{ request.user.username }}'s Collection</h2>
+    <nav id="navbar">
+        <h2>dapponics Mixer</h2>
+   
 
-    <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
-    <hr>
-
-
-
-
-    <table class="table">
-        V1
-        <form action="">
-            <thead>
-                <tr>
-                    <th><input type="text" name="Part1" placeholder="Part Name"></th>
-                    <th><input type="text" name="Part2" placeholder="Part Name"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div><input type="file" name="Part1png1" accept="image/png" /></div>
-                        <span><input type="text" name="Part1Trait1" placeholder="Trait Name"></span>
-                        <span><input type="text" name="Part1Rarity1" placeholder="Rarity"></span>
-                    </td>
-                    <td>
-                        <div><input type="file" name="Part2png1" accept="image/png" /></div>
-                        <span><input type="text" name="Part2Trait1" placeholder="Trait Name"></span>
-                        <span><input type="text" name="Part2Trait2" placeholder="Rarity"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div><input type="file" name="Part1png2" accept="image/png" /></div>
-                        <span><input type="text" name="Part1Trait2" placeholder="Trait Name"></span>
-                        <span><input type="text" name="Part1Rarity2" placeholder="Rarity"></span>
-                    </td>
-                    <td>
-                        <div><input type="file" name="Part2png2" accept="image/png" /></div>
-                        <span><input type="text" name="Part2Trait2" placeholder="Trait Name"></span>
-                        <span><input type="text" name="Part2Rarity2" placeholder="Rarity"></span>
-                    </td>
-                </tr>
-            </tbody>
-        </form>
-    </table>
-
-    <div>
-        <span>
-            <input class="btn btn-primary" type="submit" value="1 Save">
-        </span>
-        <span>
-            <input type="text" name="Rarity Name" placeholder="Supply">
-            <input class="btn btn-primary" type="submit" value="2 Mix">
-        </span>
+        <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
+    </nav>
+    <div id="header">
+        <h2>{{ request.user.username }}'s Collection</h2>
     </div>
+    Edit your traits and save the changes
+    <div id="input">
+        <div class="part">
+            <div class="partname">
+                <input class="traitinput" type="text" name="partname" placeholder="Part Name">
+            </div>
+            <div class="row">
+                <div class="traits">
+                    <div class="trait">
+                        <div class="png">
+                            <input class="traitinput" type="text" name="png" placeholder="png">
+                        </div>
+                        <div class="traitname">
+                            <input class="traitinput" type="text" name="traitname" placeholder="Trait Name">
+                        </div>
+                        <div class="rarity">
+                            <input class="traitinput" type="text" name="rarity" placeholder="Rarity %">
+                        </div>
+                    </div>
+                </div>
+                <div class="newtrait">
+                    add new trait
+                </div>
+            </div>
+            
+        </div>
+        <div class="part" id="newpart">
+            add new part
+        </div>
+
+        <input id="save" class="btn btn-primary" type="submit" value="1 Save">
+    </div>
+
+    Select supply and create your collection
+    <div id="output">
+        <div id="supply">
+            <input type="text" name="Supply" placeholder="Supply">
+        </div>
+        <input id="mix" class="btn btn-primary" type="submit" value="2 Mix">
+    </div>
+
+
 {% endblock %}
 
 {% block script %}
