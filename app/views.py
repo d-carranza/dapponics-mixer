@@ -8,7 +8,7 @@ from django.shortcuts import render
 from .models import User
 
 
-def index(request):
+def index(request, *args, **kwargs):
 
     # Authenticated users view their inbox
     if request.user.is_authenticated:

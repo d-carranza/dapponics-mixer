@@ -3,58 +3,22 @@
 
 {% block body %}
     <nav id="navbar">
-        <h2>dapponics Mixer</h2>
-   
-
-        <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
+        <div class="navelement" id="logo">
+              <h2>dapponics Mixer</h2>
+        </div>
+        <div class="navelement">
+               <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
+        </div>
+     
     </nav>
     <div id="header">
         <h2>{{ request.user.username }}'s Collection</h2>
     </div>
-    Edit your traits and save the changes
-    <div id="input">
-        <div class="part">
-            <div class="partname">
-                <input class="traitinput" type="text" name="partname" placeholder="Part Name">
-            </div>
-            <div class="row">
-                <div class="traits">
-                    <div class="trait">
-                        <div class="png">
-                            <input class="traitinput" type="text" name="png" placeholder="png">
-                        </div>
-                        <div class="traitname">
-                            <input class="traitinput" type="text" name="traitname" placeholder="Trait Name">
-                        </div>
-                        <div class="rarity">
-                            <input class="traitinput" type="text" name="rarity" placeholder="Rarity %">
-                        </div>
-                    </div>
-                </div>
-                <div class="newtrait">
-                    add new trait
-                </div>
-            </div>
-            
-        </div>
-        <div class="part" id="newpart">
-            add new part
-        </div>
-
-        <input id="save" class="btn btn-primary" type="submit" value="1 Save">
+    <div id="main">
+        <div id="app"></div>
     </div>
-
-    Select supply and create your collection
-    <div id="output">
-        <div id="supply">
-            <input type="text" name="Supply" placeholder="Supply">
-        </div>
-        <input id="mix" class="btn btn-primary" type="submit" value="2 Mix">
-    </div>
-
-
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'app/app.js' %}"></script>
+    <script src="{% static "app/main.js" %}"></script>
 {% endblock %}

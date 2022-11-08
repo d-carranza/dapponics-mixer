@@ -3,6 +3,15 @@ body {
     color: white;
 }
 
+#navbar {
+    display: flex;
+    justify-content: space-between;
+
+}
+#logout{
+    margin-top: 8px;
+}
+
 #header {
     text-align: center;
     margin-bottom: 8px;

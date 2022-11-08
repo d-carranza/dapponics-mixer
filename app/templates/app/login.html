@@ -1,6 +1,10 @@
 {% extends "app/layout.html" %}
 
 {% block body %}
+    <div class="navelement" id="logo">
+        <h2>dapponics Mixer</h2>
+    </div>
+    <hr>
 
     <h2>Login</h2>
 
@@ -16,9 +20,9 @@
         <div class="form-group">
             <input class="form-control" type="password" name="password" placeholder="Password">
         </div>
-        <input class="btn btn-primary" type="submit" value="Login">
+        <input class="btn btn-sm btn-outline-primary" type="submit" value="Login">
     </form>
-
+    <hr>
     Don't have an account? <a href="{% url 'register' %}">Register here.</a>
 
 {% endblock %}

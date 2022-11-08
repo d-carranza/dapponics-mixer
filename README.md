@@ -70,3 +70,9 @@ Following steps:
 2. store the data sucessfully in the database
 For this I have to learn proper img file management and how to fetch with react
 TODO: Constrain user input to avoid bugs and provide feedback
+
+**Notes 5.0**
+I decided to start with the frontend first.
+Need to revamp all the structure of this project to include React and allow React to take control of the things happening in the DOM.
+In order to do that I installed npm modules and configured React.
+In the lecture we saw react embedded inside the HTML file, but to be more tidy this time I will be using react in independent javascript files.
