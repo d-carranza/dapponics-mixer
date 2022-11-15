@@ -79,4 +79,5 @@ In the lecture we saw react embedded inside the HTML file, but to be more tidy t
 App.js in components will contain all the react code for the frontend. Now my goal is to make a great user friendly interface where user can input the different parts of the collection and every trait in each part.
 
 **Notes 6.0**
-TODO: Develop the frontend with the divs add/remove features and the buttons for save the data in the database and to mix the saved traits.
+TODO: Develop the frontend with the divs add/remove features and the buttons for save the data in the database and to mix the saved traits. 
+Initially without the pictures.
