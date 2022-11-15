@@ -77,3 +77,6 @@ Need to revamp all the structure of this project to include React and allow Reac
 In order to do that I installed npm modules and configured React.
 In the lecture we saw react embedded inside the HTML file, but to be more tidy this time I will be using react in independent javascript files.
 App.js in components will contain all the react code for the frontend. Now my goal is to make a great user friendly interface where user can input the different parts of the collection and every trait in each part.
+
+**Notes 6.0**
+TODO: Develop the frontend with the divs add/remove features and the buttons for save the data in the database and to mix the saved traits.
