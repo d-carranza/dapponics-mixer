@@ -4,12 +4,11 @@
 {% block body %}
     <nav id="navbar">
         <div class="navelement" id="logo">
-              <h2>dapponics Mixer</h2>
+              <h2>Mixer</h2>
         </div>
         <div class="navelement">
                <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
         </div>
-     
     </nav>
     <div id="header">
         <h2>{{ request.user.username }}'s Collection</h2>

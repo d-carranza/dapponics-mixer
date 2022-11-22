@@ -94,3 +94,18 @@ Initially without the pictures.
 
 **Notes 7.0**
 Ok, React is going to take longer time than expected to learn and apply but is extremely useful so it will be worthit to take the time. For now I'm watching a React crash course and reading React's documentation.
+
+**Notes 8.0**
+This project is complex, but I'm going to beak it down to smaller steps and advance little by little.
+
+1 - Make frontend with React.js and Chakra UI
+2 - Fetch data to backend
+3 - DB management each session's collection
+4 - Prepopulate frontend with data if any
+5 - Mixer algorithm buffer files .png .json in folders and zip them
+6 - Download from local storage
+
+To run the server I need to use "python manage.py runserver" and to compile the react app I need to use "npm run dev" in the app folder.
+
+**Notes 9.0**
+I allow myself to take longer time learning react as I consider it will be useful in my future

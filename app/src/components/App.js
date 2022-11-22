@@ -1,30 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { render } from "react-dom";
-import * as React from "react";
-
-// 1. import `ChakraProvider` component
-import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
-  // 2. Wrap ChakraProvider at the root of your app
+  //App main state
+  const [inputState, setInputState] = useState([
+    {
+      partName: "partName1",
+      partTraits: [
+        { png: "pnglink", traitname: "name1", rarity: "rarity1" },
+        { png: "pnglink2", traitname: "name2", rarity: "rarity2" },
+      ],
+    },
+  ]);
+
+  // App main return
   return (
-    <ChakraProvider>
-      <TheRestOfYourApplication />
-    </ChakraProvider>
+    <div>
+      <h1> Lets do this right </h1>
+    </div>
   );
 }
 
-// npm run dev
-
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return <h1>Testing react code</h1>;
-  }
-}
-
-const appDiv = document.getElementById("app");
-render(<App />, appDiv);
+export default App;
+render(<App />, document.getElementById("app"));

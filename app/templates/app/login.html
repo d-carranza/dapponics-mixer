@@ -1,28 +1,37 @@
-{% extends "app/layout.html" %}
+{% extends "app/layout.html" %} {% block body %}
+<div class="navelement" id="logo">
+  <h2>Mixer</h2>
+</div>
+<hr />
 
-{% block body %}
-    <div class="navelement" id="logo">
-        <h2>dapponics Mixer</h2>
-    </div>
-    <hr>
+<h2>Login</h2>
 
-    <h2>Login</h2>
+{% if message %}
+<div>{{ message }}</div>
+{% endif %}
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
-
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-sm btn-outline-primary" type="submit" value="Login">
-    </form>
-    <hr>
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+<form action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <input
+      autofocus
+      class="form-control"
+      type="text"
+      name="username"
+      placeholder="Username"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      placeholder="Password"
+    />
+  </div>
+  <input class="btn btn-sm btn-outline-primary" type="submit" value="Login" />
+</form>
+<hr />
+Don't have an account? <a href="{% url 'register' %}">Register here.</a>
 
 {% endblock %}
