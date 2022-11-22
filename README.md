@@ -109,3 +109,4 @@ To run the server I need to use "python manage.py runserver" and to compile the 
 
 **Notes 9.0**
 I allow myself to take longer time learning react as I consider it will be useful in my future
+Progress: Added Trait, Type, Input and Output components layout.
