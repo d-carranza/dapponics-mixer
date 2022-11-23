@@ -71,7 +71,7 @@ body {
 
 .textinput {
   background-color: #ffffff00;
-  color: #ffffff45;
+  color: #ffffff55;
   border: solid;
   border-color: #ffffff35;
   border-radius: 3px;
@@ -82,7 +82,7 @@ body {
   margin-bottom: 4px;
 }
 
-.deletetrait {
+.removetrait {
   text-align: right;
 }
 
@@ -110,7 +110,7 @@ body {
   margin-top: 3px;
 }
 
-.deletebtn {
+.removebtn {
   border-width: 0px;
   background-color: #e68181;
   border-radius: 20px;
