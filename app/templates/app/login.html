@@ -1,6 +1,6 @@
 {% extends "app/layout.html" %} {% block body %}
-<div class="navelement" id="logo">
-  <h2>Mixer</h2>
+<div class="mixer">
+  <h2>MIXER</h2>
 </div>
 <hr />
 
@@ -29,9 +29,10 @@
       placeholder="Password"
     />
   </div>
-  <input class="btn btn-sm btn-outline-primary" type="submit" value="Login" />
+  <input class="session-btn" type="submit" value="Login" />
 </form>
 <hr />
-Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+Don't have an account?
+<a class="session-link" href="{% url 'register' %}">Register here.</a>
 
 {% endblock %}

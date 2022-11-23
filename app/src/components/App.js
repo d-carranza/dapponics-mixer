@@ -25,11 +25,22 @@ function App() {
     // Return rendered specific trait with the image name and rarity data
     return (
       <div className="traits">
-        <h3>Trait component</h3>
-        <div>Image: </div>
-        <div>Name: </div>
-        <div>Rarity: </div>
-        <button>Remove Trait</button>
+        <div className="deletetrait">
+          <button name="deletetrait" className="deletebtn">
+            x
+          </button>
+        </div>
+        <div className="traitinputs">
+          <div>
+            <input className="textinput" value="" placeholder="Img Url" />
+          </div>
+          <div>
+            <input className="textinput" value="" placeholder="Trait Name" />
+          </div>
+          <div>
+            <input className="textinput" value="" placeholder="Trait Rarity" />
+          </div>
+        </div>
       </div>
     );
     // TODO: Inputing an image triggers an upload and when receiving the url updates the state with the url
@@ -39,15 +50,25 @@ function App() {
   function Type(props) {
     // Return rendered traits for given type (in the props)
     return (
-      <div className="part">
-        <h3>Type Component</h3>
-        <div>Type Name:</div>
+      <div className="type">
+        <div className="typeheader">
+          <div>
+            <input
+              className="textinput"
+              value=""
+              placeholder="Type Name"
+              autoFocus={true}
+            />
+          </div>
+          <button name="deletetype" className="deletebtn">
+            x
+          </button>
+        </div>
         <div className="row">
           {/* // Map traits and fill image, name and rarity */}
           <Trait />
-          <button className="newtrait">newtrait</button>
+          <button className="addtrait">+Add Trait</button>
         </div>
-        <button>Remove Type</button>
       </div>
     );
   }
@@ -56,10 +77,10 @@ function App() {
   function Input(props) {
     return (
       <div id="input">
-        <h3>Input Component</h3>
+        Enter the traits of your collecion ordered by type:
         {/* // Map types and fill names and trait's row */}
         <Type />
-        <button>Add Type</button>
+        <button className="addtype">+Add Type</button>
       </div>
     );
   }
@@ -68,8 +89,10 @@ function App() {
   function Output(props) {
     return (
       <div id="output">
-        <h3>Input Component</h3>
-        <div id="supply">Enter Supply</div>
+        Choose your collection's supply:
+        <div>
+          <input className="textinput" value="" placeholder="Enter Supply" />
+        </div>
       </div>
     );
   }
@@ -79,8 +102,10 @@ function App() {
     <div>
       <Input />
       <Output />
-      <button>Save Changes</button>
-      <button>Create Collection</button>
+      <div className="buttons">
+        <button className="app-btn">Save Changes</button>
+        <button className="app-btn">Create Collection</button>
+      </div>
     </div>
   );
 }

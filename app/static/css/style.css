@@ -1,31 +1,53 @@
 body {
   background-color: #1c202b;
   color: #edeeee;
+  font-family: "Lexend Deca";
+}
+
+.mixer {
+  font-family: "Kodchasan";
+  font-weight: bolder;
+  vertical-align: middle;
 }
 
 #navbar {
   display: flex;
   justify-content: space-between;
 }
-#logout {
-  margin-top: 8px;
+
+.big-container {
+  margin-top: 20px;
+  padding-top: 18px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 32px;
+  border: solid;
+  border-color: #ffffff29;
+  border-radius: 20px;
+  border-width: 1px;
 }
 
 #header {
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 30px;
+  font-size: 30px;
 }
 
 #input {
-  background-color: #140d20;
-  padding: 8px;
-  overflow: auto;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
-.part {
-  background-color: #20192b;
+.type {
+  border: solid;
+  border-color: #ffffff29;
+  border-radius: 8px;
+  border-width: 1px;
   padding: 4px;
+}
+
+.typeheader {
+  display: flex;
+  justify-content: space-between;
 }
 
 .row {
@@ -34,10 +56,34 @@ body {
 }
 
 .traits {
-  background-color: #3a2c47;
+  border: solid;
+  border-color: #ffffff29;
+  border-width: 1px;
   height: 210px;
   width: 160px;
-  margin: 8px;
+  margin-right: 4px;
+  padding: 4px;
+}
+
+.traitinputs {
+  padding-top: 61px;
+}
+
+.textinput {
+  background-color: #ffffff00;
+  color: #ffffff45;
+  border: solid;
+  border-color: #ffffff35;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 100%;
+  height: 35px;
+  padding-left: 15px;
+  margin-bottom: 4px;
+}
+
+.deletetrait {
+  text-align: right;
 }
 
 .traitinput {
@@ -47,40 +93,79 @@ body {
   margin-top: 8px;
 }
 
-.newtrait {
-  background-color: #3a2c47;
+.addtrait {
+  border: solid;
+  border-color: #ffffff29;
+  border-width: 1px;
+  background-color: #ffffff00;
+  color: #81e6d9;
   height: 210px;
   width: 160px;
-  margin: 8px;
 }
 
-#newpart {
-  height: 100px;
-  margin-top: 8px;
+.addtype {
+  background-color: #ffffff00;
+  color: #81e6d9;
+  border-width: 0px;
+  margin-top: 3px;
 }
 
-#save {
-  margin-top: 8px;
-  float: right;
+.deletebtn {
+  border-width: 0px;
+  background-color: #e68181;
+  border-radius: 20px;
+  color: #1a202c;
+  height: 25px;
+  width: 25px;
 }
 
 #output {
-  background-color: #140d20;
-  padding: 8px;
-  overflow: auto;
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 #supply {
-  background-color: #20192b;
+  border: solid;
+  border-color: #ffffff29;
+  border-radius: 8px;
+  border-width: 1px;
   display: flex;
   justify-content: center;
   padding: 4px;
 }
 
-#mix {
-  margin-top: 8px;
-  float: right;
-  margin-right: 0;
+.session-btn {
+  background-color: #81e6d9;
+  color: #1a202c;
+  border-radius: 40px;
+  height: 40px;
+  width: 90px;
+  font-weight: bolder;
+}
+
+.session-link {
+  color: #81e6d9;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.app-btn {
+  background-color: #81e6d9;
+  color: #1a202c;
+  border-radius: 40px;
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-weight: bolder;
+}
+
+.footer {
+  color: #718096;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
 }

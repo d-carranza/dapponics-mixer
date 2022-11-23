@@ -3,19 +3,25 @@
 
 {% block body %}
     <nav id="navbar">
-        <div class="navelement" id="logo">
-              <h2>Mixer</h2>
+        <div class="mixer">
+              <h2>MIXER</h2>
         </div>
         <div class="navelement">
-               <a class="btn btn-sm btn-outline-primary" id="logout" href="{% url 'logout' %}">Log Out</a>
+            <form action="{% url 'logout' %}">
+            <input class="session-btn" type="submit" value="Log Out" />
+        </form>
         </div>
     </nav>
-    <div id="header">
-        <h2>{{ request.user.username }}'s Collection</h2>
+    <div class="big-container">
+        <div id="header">
+        {{ request.user.username }}'s Collection
+        </div>
+        <div id="main">
+            <div id="app"></div>
+        </div>
     </div>
-    <div id="main">
-        <div id="app"></div>
-    </div>
+    <div class="footer">2022 - Dapponics</div>
+    
 {% endblock %}
 
 {% block script %}
