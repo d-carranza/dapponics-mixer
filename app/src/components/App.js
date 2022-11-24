@@ -3,38 +3,41 @@ import { render } from "react-dom";
 
 function App() {
   // TODO: prepopulate initial state from database
-  const initialState = [
-    {
-      value: "type 1",
-      traits: [
-        {
-          img: "ipfs",
-          name: "trait 1-1",
-          rarity: "40",
-        },
-        {
-          img: "ipfs2",
-          name: "trait 1-2",
-          rarity: "60",
-        },
-      ],
-    },
-    {
-      value: "type 2",
-      traits: [
-        {
-          img: "ipfs3",
-          name: "trait 2-1",
-          rarity: "30",
-        },
-        {
-          img: "ipfs4",
-          name: "trait 2-2",
-          rarity: "70",
-        },
-      ],
-    },
-  ];
+  const initialState = {
+    attributes: [
+      {
+        trait_type: "type 1",
+        traits: [
+          {
+            img: "ipfs",
+            value: "trait 1-1",
+            rarity: "40",
+          },
+          {
+            img: "ipfs2",
+            value: "trait 1-2",
+            rarity: "60",
+          },
+        ],
+      },
+      {
+        trait_type: "type 2",
+        traits: [
+          {
+            img: "ipfs3",
+            value: "trait 2-1",
+            rarity: "30",
+          },
+          {
+            img: "ipfs4",
+            value: "trait 2-2",
+            rarity: "70",
+          },
+        ],
+      },
+    ],
+    supply: "",
+  };
 
   const [state, setState] = React.useState(initialState);
 
@@ -60,22 +63,25 @@ function App() {
         <div className="traitinputs">
           <div>
             <input
+              key="input"
               className="textinput"
-              value={state[typeIndex].traits[traitIndex].img}
+              value={state.attributes[typeIndex].traits[traitIndex].img}
               placeholder="Img Url"
             />
           </div>
           <div>
             <input
+              key="input"
               className="textinput"
-              value={state[typeIndex].traits[traitIndex].name}
+              value={state.attributes[typeIndex].traits[traitIndex].value}
               placeholder="Trait Name"
             />
           </div>
           <div>
             <input
+              key="input"
               className="textinput"
-              value={state[typeIndex].traits[traitIndex].rarity}
+              value={state.attributes[typeIndex].traits[traitIndex].rarity}
               placeholder="Trait Rarity"
             />
           </div>
@@ -101,7 +107,7 @@ function App() {
     //   setState([
     //     {
     //       ...state,
-    //       value: event.target.value,
+    //       trait_type: event.target.trait_type,
     //     },
     //   ]);
     // }
@@ -111,11 +117,12 @@ function App() {
         <div className="typeheader">
           <div>
             <input
+              key="input"
               className="textinput"
-              value={state[typeIndex].value}
+              value={state.attributes[typeIndex].trait_type}
               // onChange={updateTypeName}
               placeholder="Type Name"
-              autoFocus={true}
+              // autoFocus={true}
             />
           </div>
           <button name="removetype" className="removebtn">
@@ -123,7 +130,7 @@ function App() {
           </button>
         </div>
         <div className="row">
-          {state[typeIndex].traits.map((trait, index) => (
+          {state.attributes[typeIndex].traits.map((trait, index) => (
             <Trait typeIndex={typeIndex} traitIndex={index} />
           ))}
           <button className="addtrait">+Add Trait</button>
@@ -135,40 +142,54 @@ function App() {
   // Component 3: Input (is the div with all the inputs and adds button to add new types)
   function Input() {
     // TODO: function to add a new type at the end when button clicked
-    return (
-      <div id="input">
-        Enter the traits of your collection ordered by type:
-        {/* TODO: 1 achieve map types and for each type render Type || 2 for each type pass the index to the fuction Type */}
-        {state.map((type, index) => (
-          <Type typeIndex={index} />
-        ))}
-        <button className="addtype">+Add Type</button>
-      </div>
-    );
-  }
 
-  // Component 4: Output (supply)
-  function Output(props) {
-    // TODO: function to updateSupply
+    function updateSupply(event) {
+      setState({
+        ...state,
+        supply: event.target.value,
+      });
+    }
     return (
-      <div id="output">
-        Choose your collection's supply:
-        <div>
-          <input className="textinput" placeholder="Enter Supply" />
+      <div>
+        <div id="input">
+          Enter the traits of your collection ordered by type:
+          {state.attributes.map((type, index) => (
+            <Type typeIndex={index} />
+          ))}
+          <button className="addtype">+Add Type</button>
+        </div>
+        <div id="input-supply">
+          Choose your collection's supply:
+          <div>
+            <input
+              key="input"
+              className="textinput"
+              value={state.supply}
+              onChange={updateSupply}
+              placeholder="Enter Supply"
+            />
+          </div>
         </div>
       </div>
     );
   }
 
-  // App final return
-  return (
-    <div>
-      <Input />
-      <Output />
+  function Buttons() {
+    // TODO: add logic to the buttons
+    return (
       <div className="buttons">
         <button className="app-btn">Save Changes</button>
         <button className="app-btn">Create Collection</button>
       </div>
+    );
+  }
+
+  console.log(state);
+  // App final return
+  return (
+    <div>
+      <Input key="input" />
+      <Buttons />
     </div>
   );
 }
