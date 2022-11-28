@@ -48,7 +48,7 @@ function Trait(props) {
             className="textinput"
             value={state.attributes[typeIndex].traits[traitIndex].img}
             onChange={updateImg}
-            placeholder="Trair Img Url"
+            placeholder="Trait Img Url"
           />
         </div>
         <div>
