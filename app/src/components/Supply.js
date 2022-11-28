@@ -1,15 +1,9 @@
-import React, { Component, useEffect, useState } from "react";
+import React from "react";
 
-// State is not defined
-
-// TODO: Import function with setState
-
-function Supply() {
-  // Fetch state, setState with fetchProducts?
-
+function Supply(state) {
   function updateSupply(event) {
-    setState({
-      ...state,
+    state.setState({
+      ...state.state,
       supply: event.target.value,
     });
   }
@@ -20,7 +14,7 @@ function Supply() {
       <div>
         <input
           className="textinput"
-          value={state.supply}
+          value={state.state.supply}
           onChange={updateSupply}
           placeholder="Enter Supply"
         />

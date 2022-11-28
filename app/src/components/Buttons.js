@@ -1,12 +1,12 @@
-// import React, { Component, useEffect, useState } from "react";
+import React from "react";
 
-// function Buttons() {
-//   return (
-//     <div className="buttons">
-//       <button className="app-btn">Save Changes</button>
-//       <button className="app-btn">Create Collection</button>
-//     </div>
-//   );
-// }
+function Buttons() {
+  return (
+    <div className="buttons">
+      <button className="app-btn">Save Changes</button>
+      <button className="app-btn">Create Collection</button>
+    </div>
+  );
+}
 
-// export default Buttons;
+export default Buttons;
