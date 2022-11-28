@@ -36,7 +36,7 @@ function Type(props) {
             className="textinput"
             value={state.attributes[typeIndex].trait_type}
             onChange={updateType}
-            placeholder="Type Name"
+            placeholder="Trait Type"
             autoFocus={true}
           />
         </div>
