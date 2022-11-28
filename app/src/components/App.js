@@ -3,6 +3,8 @@ import { render } from "react-dom";
 import Input from "./Input";
 import Buttons from "./Buttons";
 
+// TODO: prepopulate initial state from database
+
 function App() {
   const initialState = {
     attributes: [
@@ -19,7 +21,6 @@ function App() {
     ],
     supply: "",
   };
-  // TODO: prepopulate initial state from database
 
   const [state, setState] = React.useState(initialState);
 
