@@ -1,9 +1,11 @@
 import React from "react";
 
-function Supply(state) {
+function Supply(props) {
+  const state = props.state;
+  const setState = props.setState;
   function updateSupply(event) {
-    state.setState({
-      ...state.state,
+    setState({
+      ...state,
       supply: event.target.value,
     });
   }
@@ -13,8 +15,9 @@ function Supply(state) {
       Choose your collection's supply:
       <div>
         <input
+          type="number"
           className="textinput"
-          value={state.state.supply}
+          value={state.supply}
           onChange={updateSupply}
           placeholder="Enter Supply"
         />

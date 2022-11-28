@@ -1,5 +1,7 @@
 import React from "react";
 
+// TODO: Improve IMG input with dropdown and manage IMG
+
 function Trait(props) {
   const state = props.state;
   const setState = props.setState;
@@ -46,7 +48,7 @@ function Trait(props) {
             className="textinput"
             value={state.attributes[typeIndex].traits[traitIndex].img}
             onChange={updateImg}
-            placeholder="Img Url"
+            placeholder="Trair Img Url"
           />
         </div>
         <div>
@@ -59,10 +61,11 @@ function Trait(props) {
         </div>
         <div>
           <input
+            type="number"
             className="textinput"
             value={state.attributes[typeIndex].traits[traitIndex].rarity}
             onChange={updateRarity}
-            placeholder="Trait Rarity"
+            placeholder="Trait Rarity %"
           />
         </div>
       </div>
