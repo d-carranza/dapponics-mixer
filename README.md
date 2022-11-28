@@ -110,3 +110,11 @@ To run the server I need to use "python manage.py runserver" and to compile the 
 **Notes 9.0**
 I allow myself to take longer time learning react as I consider it will be useful in my future
 Progress: Added Trait, Type, Input and Output components layout.
+
+**Notes 10.0**
+After two weeks...
+-The UI has the desired styles.
+-The components were fleshed out several times until every button and input rendered the desired html and updated the state as expected.
+
+-I fixed the bugs that made the inputs to lose focus with every keystroke.
+-I improved the components spliting them in different files, exporting and importing them in different components / main App.
