@@ -1,5 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
 import { render } from "react-dom";
+// import Trait from "./Trait";
+// import Type from "./Type";
+import Supply from "./Supply";
+// import Input from "./Input";
+// import Buttons from "./Buttons";
 
 function App() {
   // TODO: prepopulate initial state from database
@@ -18,16 +23,9 @@ function App() {
     ],
     supply: "",
   };
-
   const [state, setState] = React.useState(initialState);
 
-  function updateSupply(event) {
-    setState({
-      ...state,
-      supply: event.target.value,
-    });
-  }
-
+  // TODO: Solve the issue with losing focus
   function Trait(props) {
     const typeIndex = props.typeIndex;
     const traitIndex = props.traitIndex;
@@ -99,7 +97,6 @@ function App() {
       </div>
     );
   }
-
   function Type(props) {
     const typeIndex = props.typeIndex;
 
@@ -157,23 +154,6 @@ function App() {
       </div>
     );
   }
-
-  function Supply() {
-    return (
-      <div id="input-supply">
-        Choose your collection's supply:
-        <div>
-          <input
-            className="textinput"
-            value={state.supply}
-            onChange={updateSupply}
-            placeholder="Enter Supply"
-          />
-        </div>
-      </div>
-    );
-  }
-
   function Input() {
     function addType() {
       const stateObject = { ...state };
@@ -205,7 +185,6 @@ function App() {
       </div>
     );
   }
-
   function Buttons() {
     return (
       <div className="buttons">
@@ -214,9 +193,6 @@ function App() {
       </div>
     );
   }
-
-  console.info(state);
-
   return (
     <div>
       <Input />
