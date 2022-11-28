@@ -11,12 +11,13 @@ body {
 }
 
 #navbar {
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
 }
 
 .big-container {
-  margin-top: 20px;
+  margin-top: 25px;
   padding-top: 18px;
   padding-left: 32px;
   padding-right: 32px;
@@ -165,7 +166,7 @@ body {
 
 .footer {
   color: #718096;
-  margin-top: 20px;
+  margin-top: 25px;
   text-align: center;
   font-size: 14px;
 }
