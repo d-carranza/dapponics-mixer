@@ -6,32 +6,12 @@ function App() {
   const initialState = {
     attributes: [
       {
-        trait_type: "type 1",
+        trait_type: "",
         traits: [
           {
-            img: "ipfs",
-            value: "trait 1-1",
-            rarity: "40",
-          },
-          {
-            img: "ipfs2",
-            value: "trait 1-2",
-            rarity: "60",
-          },
-        ],
-      },
-      {
-        trait_type: "type 2",
-        traits: [
-          {
-            img: "ipfs3",
-            value: "trait 2-1",
-            rarity: "30",
-          },
-          {
-            img: "ipfs4",
-            value: "trait 2-2",
-            rarity: "70",
+            img: "",
+            value: "",
+            rarity: "",
           },
         ],
       },
@@ -41,141 +21,192 @@ function App() {
 
   const [state, setState] = React.useState(initialState);
 
-  // Component 1: Trait (the most basic component)
+  function updateSupply(event) {
+    setState({
+      ...state,
+      supply: event.target.value,
+    });
+  }
+
   function Trait(props) {
-    // Receives the type and the trait indexed from Type function
     const typeIndex = props.typeIndex;
     const traitIndex = props.traitIndex;
 
-    // TODO: function to remove that specific trait when button clicked
-    // TODO: function to updaTraitImg for all indexes
-    // TODO: function to updaTraitName for all indexes
-    // TODO: function to updaTraitRarity for all indexes
+    function updateImg(event) {
+      const stateObject = { ...state };
+      stateObject.attributes[typeIndex].traits[traitIndex].img =
+        event.target.value;
+      setState(stateObject);
+    }
 
-    // The inputed props contains the specific index for one trait, return the specific trait
+    function updateValue(event) {
+      const stateObject = { ...state };
+      stateObject.attributes[typeIndex].traits[traitIndex].value =
+        event.target.value;
+      setState(stateObject);
+    }
+
+    function updateRarity(event) {
+      const stateObject = { ...state };
+      stateObject.attributes[typeIndex].traits[traitIndex].rarity =
+        event.target.value;
+      setState(stateObject);
+    }
+
+    function removeTrait() {
+      const stateObject = { ...state };
+      stateObject.attributes[typeIndex].traits.pop(traitIndex);
+      setState(stateObject);
+    }
+
     return (
-      <div className="traits">
+      <div className="traits" key={traitIndex}>
         <div className="removetrait">
-          <button name="removetrait" className="removebtn">
+          <button
+            name="removetrait"
+            className="removebtn"
+            onClick={removeTrait}
+          >
             x
           </button>
         </div>
         <div className="traitinputs">
           <div>
             <input
-              key="input"
               className="textinput"
               value={state.attributes[typeIndex].traits[traitIndex].img}
+              onChange={updateImg}
               placeholder="Img Url"
             />
           </div>
           <div>
             <input
-              key="input"
               className="textinput"
               value={state.attributes[typeIndex].traits[traitIndex].value}
-              placeholder="Trait Name"
+              onChange={updateValue}
+              placeholder="Trait Value"
             />
           </div>
           <div>
             <input
-              key="input"
               className="textinput"
               value={state.attributes[typeIndex].traits[traitIndex].rarity}
+              onChange={updateRarity}
               placeholder="Trait Rarity"
             />
           </div>
         </div>
       </div>
     );
-    // TODO: Inputing an image triggers an upload and when receiving the url updates the state with the url
   }
 
-  // Component 2: Type (renders types, removeType-btn for each type, and addType-btn at the end)
   function Type(props) {
-    // Receives the type index from Index function
     const typeIndex = props.typeIndex;
 
-    // TODO: function to add a new trait at the end when button clicked
+    function updateType(event) {
+      const stateObject = { ...state };
+      stateObject.attributes[typeIndex].trait_type = event.target.value;
+      setState(stateObject);
+    }
 
-    // TODO: function to remove that specific type when button clicked
-    // TODO: function to updateTypeName for all indexes
+    function addTrait() {
+      console.log("+ Add Trait button was clicked");
+      const stateObject = { ...state };
+      stateObject.attributes[typeIndex].traits.push({
+        img: "",
+        value: "",
+        rarity: "",
+      });
+      setState(stateObject);
+    }
 
-    // Esta funcion va bien para el indice 0, pero no para indice 1
-
-    // function updateTypeName(event) {
-    //   setState([
-    //     {
-    //       ...state,
-    //       trait_type: event.target.trait_type,
-    //     },
-    //   ]);
-    // }
+    function removeType() {
+      const stateObject = { ...state };
+      stateObject.attributes.pop(typeIndex);
+      setState(stateObject);
+    }
 
     return (
-      <div className="type">
+      <div className="type" key={typeIndex}>
         <div className="typeheader">
           <div>
             <input
-              key="input"
               className="textinput"
               value={state.attributes[typeIndex].trait_type}
-              // onChange={updateTypeName}
+              onChange={updateType}
               placeholder="Type Name"
               // autoFocus={true}
             />
           </div>
-          <button name="removetype" className="removebtn">
+          <button name="removetype" className="removebtn" onClick={removeType}>
             x
           </button>
         </div>
         <div className="row">
-          {state.attributes[typeIndex].traits.map((trait, index) => (
-            <Trait typeIndex={typeIndex} traitIndex={index} />
+          {state.attributes[typeIndex].traits.map((trait, traitIndex) => (
+            <Trait
+              key={traitIndex}
+              typeIndex={typeIndex}
+              traitIndex={traitIndex}
+            />
           ))}
-          <button className="addtrait">+Add Trait</button>
+          <button className="addtrait" onClick={addTrait}>
+            +Add Trait
+          </button>
         </div>
       </div>
     );
   }
 
-  // Component 3: Input (is the div with all the inputs and adds button to add new types)
-  function Input() {
-    // TODO: function to add a new type at the end when button clicked
+  function Supply() {
+    return (
+      <div id="input-supply">
+        Choose your collection's supply:
+        <div>
+          <input
+            className="textinput"
+            value={state.supply}
+            onChange={updateSupply}
+            placeholder="Enter Supply"
+          />
+        </div>
+      </div>
+    );
+  }
 
-    function updateSupply(event) {
-      setState({
-        ...state,
-        supply: event.target.value,
+  function Input() {
+    function addType() {
+      const stateObject = { ...state };
+      stateObject.attributes.push({
+        trait_type: "",
+        traits: [
+          {
+            img: "",
+            value: "",
+            rarity: "",
+          },
+        ],
       });
+      setState(stateObject);
     }
+
     return (
       <div>
         <div id="input">
           Enter the traits of your collection ordered by type:
-          {state.attributes.map((type, index) => (
-            <Type typeIndex={index} />
+          {state.attributes.map((type, typeIndex) => (
+            <Type key={typeIndex} typeIndex={typeIndex} />
           ))}
-          <button className="addtype">+Add Type</button>
+          <button className="addtype" onClick={addType}>
+            +Add Type
+          </button>
         </div>
-        <div id="input-supply">
-          Choose your collection's supply:
-          <div>
-            <input
-              key="input"
-              className="textinput"
-              value={state.supply}
-              onChange={updateSupply}
-              placeholder="Enter Supply"
-            />
-          </div>
-        </div>
+        <Supply />
       </div>
     );
   }
 
   function Buttons() {
-    // TODO: add logic to the buttons
     return (
       <div className="buttons">
         <button className="app-btn">Save Changes</button>
@@ -184,11 +215,11 @@ function App() {
     );
   }
 
-  console.log(state);
-  // App final return
+  console.info(state);
+
   return (
     <div>
-      <Input key="input" />
+      <Input />
       <Buttons />
     </div>
   );
