@@ -1,9 +1,11 @@
+import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import User
 
@@ -18,11 +20,22 @@ def index(request, *args, **kwargs):
     else:
         return HttpResponseRedirect(reverse("login"))
 
-
+@csrf_exempt
 @login_required
 def save(request):
+# --------------------------------
 
+    # Saving traits must be done via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    # Check recipient emails
+    data = json.loads(request.body)
+    print(data)
     # TODO store and request user info in the database
+   
+#    --------------------------------
+   
     return HttpResponseRedirect(reverse("login"))
 
 
@@ -77,29 +90,3 @@ def register(request):
 
 
 
-    # traits = {
-    #     {
-    #         "type": "left",
-    #         "value": "pink",
-    #         "rarity": "60",
-    #         "image": "???",
-    #     },
-    #     {
-    #         "type": "left",
-    #         "value": "green",
-    #         "rarity": "40",
-    #         "image": "???",
-    #     },
-    #     {
-    #         "type": "right",
-    #         "value": "blue",
-    #         "rarity": "60",
-    #         "image": "???",
-    #     },
-    #     {
-    #         "type": "right",
-    #         "value": "yellow",
-    #         "rarity": "40",
-    #         "image": "???",
-    #     }
-    # }

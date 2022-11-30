@@ -7,9 +7,29 @@ function Buttons(props) {
   const state = props.state;
   const setState = props.setState;
 
+  async function saveChanges() {
+    console.log("fetch state to the save view");
+    console.log(state);
+
+    // ------------------------------------------------
+    const request = {
+      method: "POST",
+      body: JSON.stringify({ ...state }),
+    };
+
+    // Fetch POST request
+    const response = await fetch("/save", request);
+    const result = await response.json();
+    console.info(result);
+
+    // -------------------------------------------------
+  }
+
   return (
     <div className="buttons">
-      <button className="app-btn">Save Changes</button>
+      <button className="app-btn" onClick={saveChanges}>
+        Save Changes
+      </button>
       <button className="app-btn">Create Collection</button>
     </div>
   );
