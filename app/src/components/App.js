@@ -20,10 +20,15 @@ function App() {
     supply: "",
   };
 
-  // TODO: prepopulate initial state from database
+  // TODO: prepopulate initial state from database LOOK FOR STATE IN THE BACKEND
+
+  // Can this be async?
 
   // ------------------------------------------
-  // async function getstate() {
+  // async function setinitialstate(props) {
+  //   const state = props.state;
+  //   const setState = props.setState;
+
   //   const response = await fetch("/initialstate", {
   //     method: "POST",
   //   });
@@ -32,10 +37,9 @@ function App() {
   //   return result;
   // }
 
-  // initialState = getstate();
+  // setState({ ...result })
+  // return
   // ----------------------------------------
-
-  console.log(initialState);
 
   const [state, setState] = React.useState(initialState);
 
