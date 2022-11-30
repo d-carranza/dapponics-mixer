@@ -118,3 +118,7 @@ After two weeks...
 
 -I fixed the bugs that made the inputs to lose focus with every keystroke.
 -I improved the components spliting them in different files, exporting and importing them in different components / main App.
+
+**Notes 11.0**
+Save changes button successfully fetches the json version of the state to the backend, an now I can start managing the data from the frontend's input in the backend.
+The idea is check if every value is corect and if all of them are then save them in the database for the given user. On the contraty if I find an error in any value, I should notify to the front that there is an error.
