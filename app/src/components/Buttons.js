@@ -8,10 +8,6 @@ function Buttons(props) {
   const setState = props.setState;
 
   async function saveChanges() {
-    console.log("fetch state to the save view");
-    console.log(state);
-
-    // ------------------------------------------------
     const request = {
       method: "POST",
       body: JSON.stringify({ ...state }),
@@ -21,8 +17,6 @@ function Buttons(props) {
     const response = await fetch("/save", request);
     const result = await response.json();
     console.info(result);
-
-    // -------------------------------------------------
   }
 
   return (

@@ -32,6 +32,9 @@ def save(request):
     # Check recipient emails
     data = json.loads(request.body)
     print(data)
+
+    # Ok la data llega ahora como en email, consigue el user y gestiona la data y metela en la database
+    return JsonResponse({"message": "Traits sent successfully."}, status=201)
     # TODO store and request user info in the database
    
 #    --------------------------------
