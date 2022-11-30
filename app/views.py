@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import User
+from .models import User, Trait
 
 
 def index(request, *args, **kwargs):
@@ -24,73 +24,111 @@ def index(request, *args, **kwargs):
 @login_required
 def save(request):
 
-
+    # Get user
+    user = request.user
+ 
     # Saving traits must be done via POST
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=400)
 
     if request.method == "POST":
-        # Check received data
-        data = json.loads(request.body)
-        print(data)
+        # Parse received data
+        collection = (json.loads(request.body))
+        attributes = collection["attributes"]
 
-        # TODO Extract user & data values and if not ok send errors (these errors should be displayed in te app later)
+        # Delete previous user's traits in the database
+        alltraits = Trait.objects.all()
+        for trait in alltraits:
+            if trait.user == user:
+                trait.delete()
 
+        # Save new user's traits in the database
+        for attribute in attributes:
+            type = attribute["trait_type"]
+            for trait in attribute["traits"]:
+                value = trait["img"]
+                rarity = trait["rarity"]
+                img = trait["img"]
 
-        # TODO Else, introduce the values in the database in order usin for each loops
-# ---------------------------------------------------------------------------------
-# # def compose(request):
+                newtrait = Trait(
+                    user=user,
+                    type=type,
+                    value=value,
+                    rarity=rarity,
+                    img=img
+                )
+                newtrait.save()
 
-# #     # Composing a new email must be via POST
-# #     if request.method != "POST":
-# #         return JsonResponse({"error": "POST request required."}, status=400)
-
-# #     # Check recipient emails
-# #     data = json.loads(request.body)
-#     emails = [email.strip() for email in data.get("recipients").split(",")]
-#     if emails == [""]:
-#         return JsonResponse({
-#             "error": "At least one recipient required."
-#         }, status=400)
-
-#     # Convert email addresses to users
-#     recipients = []
-#     for email in emails:
-#         try:
-#             user = User.objects.get(email=email)
-#             recipients.append(user)
-#         except User.DoesNotExist:
-#             return JsonResponse({
-#                 "error": f"User with email {email} does not exist."
-#             }, status=400)
-
-#     # Get contents of email
-#     subject = data.get("subject", "")
-#     body = data.get("body", "")
-
-#     # Create one email for each recipient, plus sender
-#     users = set()
-#     users.add(request.user)
-#     users.update(recipients)
-#     for user in users:
-#         email = Email(
-#             user=user,
-#             sender=request.user,
-#             subject=subject,
-#             body=body,
-#             read=user == request.user
-#         )
-#         email.save()
-#         for recipient in recipients:
-#             email.recipients.add(recipient)
-#         email.save()
-# ---------------------------------------------------------------------------------
-
-        return JsonResponse({"message": "Traits sent successfully."}, status=201)
-   
-
+        return JsonResponse({"message": "Traits saved successfully."}, status=201)
    
     return HttpResponseRedirect(reverse("login"))
+
+@csrf_exempt
+@login_required
+def initialstate(request):
+
+# TODO Make the front end fetch this view every time the page is refreshed, and replace initialState with initialstate
+    
+    # Get user traits
+    user = request.user
+
+    # Create state
+    initialstate = {}
+
+    # Add traits to the state if any
+    usertraits = Trait.objects.filter(user=user)
+    if usertraits != None:
+
+        # Find all the unique types
+        usertypes = []
+        for trait in usertraits:
+            if trait.type not in usertypes:
+                usertypes.append(trait.type)
+        
+        # For each trait create an object 
+        attributes={}
+        for type in usertypes:
+            attributes["type_value"] = type
+            attributes["traits"] = []
+
+            for trait in usertraits:
+                traitobject = {}
+
+                # Create a trait object
+                if trait.type == type:
+                    traitobject["img"] = trait.img
+                    traitobject["value"] = trait.value
+                    traitobject["rarity"] = trait.rarity
+
+                # Append traits to attributes
+                attributes["traits"].append(traitobject)
+        
+        # Append attributes to initialstate and set supply to ""
+        initialstate["attributes"] = attributes
+        initialstate["supply"] = ""
+
+    if usertraits == None:
+        initialstate["attributes"] = [
+            {
+                "trait_type": "",
+                "traits": [
+                {
+                    "img": "",
+                    "value": "",
+                    "rarity": "",
+                },
+                ],
+            },
+        ]
+        initialstate["supply"] = ""
+
+    # Parse JSON
+    jsonstate = json.dumps(initialstate)
+    print(jsonstate)
+
+    # Returns the json of the state
+    return JsonResponse(jsonstate, status=201)
+
 
 
 def login_view(request):

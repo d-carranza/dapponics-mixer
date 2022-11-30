@@ -3,10 +3,8 @@ import { render } from "react-dom";
 import Input from "./Input";
 import Buttons from "./Buttons";
 
-// TODO: prepopulate initial state from database
-
 function App() {
-  const initialState = {
+  let initialState = {
     attributes: [
       {
         trait_type: "",
@@ -21,6 +19,23 @@ function App() {
     ],
     supply: "",
   };
+
+  // TODO: prepopulate initial state from database
+
+  // ------------------------------------------
+  // async function getstate() {
+  //   const response = await fetch("/initialstate", {
+  //     method: "POST",
+  //   });
+  //   const result = await response.json();
+  //   console.info(result);
+  //   return result;
+  // }
+
+  // initialState = getstate();
+  // ----------------------------------------
+
+  console.log(initialState);
 
   const [state, setState] = React.useState(initialState);
 

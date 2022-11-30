@@ -8,7 +8,7 @@ class User(AbstractUser):
 
 class Trait(models.Model): 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.CharField(max_length=30)
-    value = models.CharField(max_length=30)
-    rarity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)])
-    img = models.ImageField(upload_to="images", blank=True)
+    type = models.CharField(max_length=30, blank=True)
+    value = models.CharField(max_length=30, blank=True)
+    rarity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)], blank=True)
+    img = models.URLField(max_length=200, blank=True)
