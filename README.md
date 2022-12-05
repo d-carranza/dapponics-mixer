@@ -135,3 +135,15 @@ Added a rarity filter in the save button that checks if all the rarity values fo
 Today, the app successfully populetes its fiels with the saved data from the database as wel as smoothly sends the data to the database when saved. Many bugs were encountered and fixed.
 
 The challenge I encountered when trying to code the populate field's formulas is that fetching to the backend is asynchronous but in react I can't asynchronously render the page, so instead I made a default state as initial state and after fetching, the state is updated with setState.
+
+**Notes 13.5**
+The first part was the react.js frontend and he django.py backend talking to each other and managing how to display and store the information. Also how to manage the text inputs.
+
+The second part is the integration of image files into the data.
+
+And the last part of the project will be the output algorythm with the final traits and the metadata in files.
+
+Now is time to focus in the second part of this project and decide how to manage the png images. I think I have a couple of options...
+I would like to make something like a dropzone inside the trait object to replace URL text. BUT I cant directly input the png bloab to the back end as my table in the database just stores URL adresses.
+My first option is, each time user inputs a png I store it somewhere in the cloud and I receive the URL. That URL is send after to the back end when the save button is clicked.
+Then what is displayed in the front end is the URL from the uploaded picture.

@@ -1,19 +1,11 @@
 import React from "react";
-
-// TODO: Improve IMG input with dropdown and manage IMG
+import Image from "./Image";
 
 function Trait(props) {
   const state = props.state;
   const setState = props.setState;
   const typeIndex = props.typeIndex;
   const traitIndex = props.traitIndex;
-
-  function updateImg(event) {
-    const stateObject = { ...state };
-    stateObject.attributes[typeIndex].traits[traitIndex].img =
-      event.target.value;
-    setState(stateObject);
-  }
 
   function updateValue(event) {
     const stateObject = { ...state };
@@ -43,14 +35,13 @@ function Trait(props) {
         </button>
       </div>
       <div className="traitinputs">
-        <div>
-          <input
-            className="textinput"
-            value={state.attributes[typeIndex].traits[traitIndex].img}
-            onChange={updateImg}
-            placeholder="Trait Img Url"
-          />
-        </div>
+        <Image
+          key={traitIndex}
+          state={state}
+          setState={setState}
+          typeIndex={typeIndex}
+          traitIndex={traitIndex}
+        />
         <div>
           <input
             className="textinput"
