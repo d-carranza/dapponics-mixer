@@ -32,6 +32,7 @@ def save(request):
         return JsonResponse({"error": "POST request required."}, status=400)
 
     if request.method == "POST":
+        
         # Parse received data
         collection = (json.loads(request.body))
         attributes = collection["attributes"]
@@ -58,7 +59,8 @@ def save(request):
                     img=img
                 )
                 newtrait.save()
-
+        print("New input saved")
+        print(attributes)
         return JsonResponse({"message": "Traits saved successfully."}, status=201)
    
     return HttpResponseRedirect(reverse("login"))
@@ -66,8 +68,6 @@ def save(request):
 @csrf_exempt
 @login_required
 def initialstate(request):
-
-# TODO Make the front end fetch this view every time the page is refreshed, and replace initialState with initialstate
     
     # Get user traits
     user = request.user
@@ -86,12 +86,14 @@ def initialstate(request):
                 usertypes.append(trait.type)
         
         # For each trait create an object 
-        attributes={}
+        attributes= []
         for type in usertypes:
-            attributes["type_value"] = type
-            attributes["traits"] = []
+            attribute = {}
+            attribute["trait_type"] = type
+            attribute["traits"] = []
 
-            for trait in usertraits:
+            typetraits = Trait.objects.filter(type=type)
+            for trait in typetraits:
                 traitobject = {}
 
                 # Create a trait object
@@ -101,13 +103,16 @@ def initialstate(request):
                     traitobject["rarity"] = trait.rarity
 
                 # Append traits to attributes
-                attributes["traits"].append(traitobject)
-        
+                attribute["traits"].append(traitobject)
+            attributes.append(attribute)
         # Append attributes to initialstate and set supply to ""
         initialstate["attributes"] = attributes
         initialstate["supply"] = ""
 
-    if usertraits == None:
+
+    # For new users
+    
+    if len(usertraits) == 0:
         initialstate["attributes"] = [
             {
                 "trait_type": "",
@@ -122,12 +127,13 @@ def initialstate(request):
         ]
         initialstate["supply"] = ""
 
+    print(initialstate)
     # Parse JSON
     jsonstate = json.dumps(initialstate)
     print(jsonstate)
 
     # Returns the json of the state
-    return JsonResponse(jsonstate, status=201)
+    return JsonResponse(jsonstate, safe=False, status=201)
 
 
 

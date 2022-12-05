@@ -126,3 +126,12 @@ The idea is replace the previous traits (if any) in the database with the new on
 **Notes 12.0**
 Save button now saves all the traits'values in the database except the supply.
 TODO: Prepopulate the state with the stored data from the data base.
+
+**Notes 13.0**
+I fixed a bug in the view initialstate loops and now the outputed object is iterable in the maps
+Added a null input filter in the save button function to avoid bugs when sending empty data to the database, now if the user leave empty fields an alert will prompt notifying the user that some fields are empty.
+Added a rarity filter in the save button that checks if all the rarity values for the same trait type add up to 100. If not the user is notified with an alert.
+
+Today, the app successfully populetes its fiels with the saved data from the database as wel as smoothly sends the data to the database when saved. Many bugs were encountered and fixed.
+
+The challenge I encountered when trying to code the populate field's formulas is that fetching to the backend is asynchronous but in react I can't asynchronously render the page, so instead I made a default state as initial state and after fetching, the state is updated with setState.
