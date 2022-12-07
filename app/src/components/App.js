@@ -17,7 +17,7 @@ function App() {
       const result = await response.json();
       const storedState = await JSON.parse(result);
 
-      // Update the state and set loading to false
+      // Update the state & set loading to false
       setState(storedState);
       return setLoadingState(false);
     }
@@ -25,7 +25,6 @@ function App() {
   }, []);
 
   if (loading) return null;
-
   return (
     <div>
       <Input state={state} setState={setState} />

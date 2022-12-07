@@ -59,7 +59,7 @@ def save(request):
                     img=img
                 )
                 newtrait.save()
-        print("New input saved")
+        print("New input saved:")
         print(attributes)
         return JsonResponse({"message": "Traits saved successfully."}, status=201)
    
@@ -72,14 +72,14 @@ def storedtraits(request):
     # Get user traits
     user = request.user
 
-    # Create state
-    initialstate = {}
+    # Create empty object
+    storedtraits = {}
 
-    # Add traits to the state if any
+    # Add traits to the object if any
     usertraits = Trait.objects.filter(user=user)
     if usertraits != None:
 
-        # Find all the unique types
+        # Make a list with all the unique types
         usertypes = []
         for trait in usertraits:
             if trait.type not in usertypes:
@@ -92,6 +92,7 @@ def storedtraits(request):
             attribute["trait_type"] = type
             attribute["traits"] = []
 
+            # Store the traits grouped by type
             typetraits = Trait.objects.filter(type=type)
             for trait in typetraits:
                 traitobject = {}
@@ -105,15 +106,13 @@ def storedtraits(request):
                 # Append traits to attributes
                 attribute["traits"].append(traitobject)
             attributes.append(attribute)
-        # Append attributes to initialstate and set supply to ""
-        initialstate["attributes"] = attributes
-        initialstate["supply"] = ""
+        # Append attributes to storedtraits and set supply to ""
+        storedtraits["attributes"] = attributes
+        storedtraits["supply"] = ""
 
-
-    # For new users
-    
+    # Default response if 0 traits are stored
     if len(usertraits) == 0:
-        initialstate["attributes"] = [
+        storedtraits["attributes"] = [
             {
                 "trait_type": "",
                 "traits": [
@@ -125,17 +124,14 @@ def storedtraits(request):
                 ],
             },
         ]
-        initialstate["supply"] = ""
+        storedtraits["supply"] = ""
 
-    print(initialstate)
-    # Parse JSON
-    jsonstate = json.dumps(initialstate)
-    print(jsonstate)
+    print("Fetched object:")
+    print(storedtraits)
 
-    # Returns the json of the state
+    # Returns parsed JSON
+    jsonstate = json.dumps(storedtraits)
     return JsonResponse(jsonstate, safe=False, status=201)
-
-
 
 def login_view(request):
     if request.method == "POST":

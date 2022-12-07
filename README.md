@@ -148,3 +148,7 @@ Now is time to focus in the second part of this project and decide how to manage
 I would ng bloab to the back end as my table in the database just stores URL adresses.
 My first option is, each time user inputs a png I store it somewhere in the cloud and I receive the URL. That URL is send after to the back end when the save button is clicked.
 Then what is displayed in the front end is the URL from the uploaded picture.
+
+**Notes 14**
+I improved the code creating a loading state that is replaced by the rendered state using useEffect.
+I also fixed a backend bug where the img values were duplicated and a frontend bug where rarity showed error while having several types.
