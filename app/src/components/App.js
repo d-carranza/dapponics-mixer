@@ -1,48 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import Input from "./Input";
 import Buttons from "./Buttons";
 
 function App() {
-  // Declare state
-  const [state, setState] = React.useState({
-    attributes: [
-      {
-        trait_type: "Trait Type",
-        traits: [
-          {
-            img: "Trait Img Url",
-            value: "Trait Value",
-            rarity: "Trait Rarity %",
-          },
-        ],
-      },
-    ],
-    supply: "",
-  });
+  const [state, setState] = useState({});
+  const [loading, setLoadingState] = useState(true);
 
   // Populate state from the backend
-  const initialAttribute = state["attributes"][0];
-  const initialTrait = state["attributes"][0]["traits"][0];
-
-  if (
-    initialAttribute["trait_type"] == "Trait Type" &&
-    initialTrait["img"] == "Trait Img Url" &&
-    initialTrait["value"] == "Trait Value" &&
-    initialTrait["rarity"] == "Trait Rarity %"
-  ) {
+  useEffect(() => {
     // Get user's collection object from database
     async function populateState() {
-      const response = await fetch("/initialstate", {
+      const response = await fetch("/storedtraits", {
         method: "POST",
       });
       const result = await response.json();
       const storedState = await JSON.parse(result);
-      return setState(storedState);
+
+      // Update the state and set loading to false
+      setState(storedState);
+      return setLoadingState(false);
     }
-    // Call the function
     populateState();
-  }
+  }, []);
+
+  if (loading) return null;
 
   return (
     <div>

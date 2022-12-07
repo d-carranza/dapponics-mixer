@@ -3,8 +3,7 @@ import Type from "./Type";
 import Supply from "./Supply";
 
 function Input(props) {
-  const state = props.state;
-  const setState = props.setState;
+  const { state, setState } = props;
 
   function addType() {
     const stateObject = { ...state };

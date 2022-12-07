@@ -2,10 +2,7 @@ import React from "react";
 import Image from "./Image";
 
 function Trait(props) {
-  const state = props.state;
-  const setState = props.setState;
-  const typeIndex = props.typeIndex;
-  const traitIndex = props.traitIndex;
+  const { state, setState, typeIndex, traitIndex } = props;
 
   function updateValue(event) {
     const stateObject = { ...state };

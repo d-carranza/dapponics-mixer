@@ -1,8 +1,8 @@
 import React from "react";
 
 function Supply(props) {
-  const state = props.state;
-  const setState = props.setState;
+  const { state, setState } = props;
+
   function updateSupply(event) {
     setState({
       ...state,

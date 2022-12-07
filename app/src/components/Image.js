@@ -4,10 +4,7 @@ import React from "react";
 
 function Image(props) {
   // Declare variables from the props arguments
-  const state = props.state;
-  const setState = props.setState;
-  const typeIndex = props.typeIndex;
-  const traitIndex = props.traitIndex;
+  const { state, setState, typeIndex, traitIndex } = props;
 
   // 1 Create Dropzone
   // 2 When a new file is uploaded in the app, it uploads it to a API cloud and gets the URL

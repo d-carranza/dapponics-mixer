@@ -47,7 +47,7 @@ def save(request):
         for attribute in attributes:
             type = attribute["trait_type"]
             for trait in attribute["traits"]:
-                value = trait["img"]
+                value = trait["value"]
                 rarity = trait["rarity"]
                 img = trait["img"]
 
@@ -67,7 +67,7 @@ def save(request):
 
 @csrf_exempt
 @login_required
-def initialstate(request):
+def storedtraits(request):
     
     # Get user traits
     user = request.user

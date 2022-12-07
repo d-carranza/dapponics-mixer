@@ -7,5 +7,5 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
     path("save", views.save, name="save"),
-    path("initialstate", views.initialstate, name="initialstate"),
+    path("storedtraits", views.storedtraits, name="storedtraits"),
 ]

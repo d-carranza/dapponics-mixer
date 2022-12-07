@@ -4,8 +4,7 @@ import React from "react";
 // TODO: Create Collection is ../../static/app/logic
 
 function Buttons(props) {
-  const state = props.state;
-  const setState = props.setState;
+  const { state, setState } = props;
 
   async function saveChanges() {
     // Filter user inputs before sending data to the database

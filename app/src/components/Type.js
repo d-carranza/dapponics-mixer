@@ -2,9 +2,7 @@ import React from "react";
 import Trait from "./Trait";
 
 function Type(props) {
-  const state = props.state;
-  const setState = props.setState;
-  const typeIndex = props.typeIndex;
+  const { state, setState, typeIndex } = props;
 
   function updateType(event) {
     const stateObject = { ...state };

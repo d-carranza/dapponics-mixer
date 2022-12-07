@@ -130,6 +130,7 @@ TODO: Prepopulate the state with the stored data from the data base.
 **Notes 13.0**
 I fixed a bug in the view initialstate loops and now the outputed object is iterable in the maps
 Added a null input filter in the save button function to avoid bugs when sending empty data to the database, now if the user leave empty fields an alert will prompt notifying the user that some fields are empty.
+
 Added a rarity filter in the save button that checks if all the rarity values for the same trait type add up to 100. If not the user is notified with an alert.
 
 Today, the app successfully populetes its fiels with the saved data from the database as wel as smoothly sends the data to the database when saved. Many bugs were encountered and fixed.
@@ -144,6 +145,6 @@ The second part is the integration of image files into the data.
 And the last part of the project will be the output algorythm with the final traits and the metadata in files.
 
 Now is time to focus in the second part of this project and decide how to manage the png images. I think I have a couple of options...
-I would like to make something like a dropzone inside the trait object to replace URL text. BUT I cant directly input the png bloab to the back end as my table in the database just stores URL adresses.
+I would ng bloab to the back end as my table in the database just stores URL adresses.
 My first option is, each time user inputs a png I store it somewhere in the cloud and I receive the URL. That URL is send after to the back end when the save button is clicked.
 Then what is displayed in the front end is the URL from the uploaded picture.
