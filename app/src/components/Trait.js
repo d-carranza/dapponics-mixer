@@ -28,7 +28,7 @@ function Trait(props) {
     <div className="traits" key={traitIndex}>
       <div className="removetrait">
         <button name="removetrait" className="removebtn" onClick={removeTrait}>
-          x
+          ✕
         </button>
       </div>
       <div className="traitinputs">

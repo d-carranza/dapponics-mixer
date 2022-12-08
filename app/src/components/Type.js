@@ -39,7 +39,7 @@ function Type(props) {
           />
         </div>
         <button name="removetype" className="removebtn" onClick={removeType}>
-          x
+          ✕
         </button>
       </div>
       <div className="row">

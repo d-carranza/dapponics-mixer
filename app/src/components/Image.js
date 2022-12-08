@@ -1,4 +1,5 @@
 import React from "react";
+import Dropzone from "./Dropzone";
 
 // TODO: Improve IMG input with dropdown and manage IMG
 
@@ -20,6 +21,7 @@ function Image(props) {
 
   return (
     <div key={traitIndex}>
+      <Dropzone />
       <input
         className="textinput"
         value={state.attributes[typeIndex].traits[traitIndex].img}
