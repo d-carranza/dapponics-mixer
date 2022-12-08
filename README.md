@@ -152,3 +152,6 @@ Then what is displayed in the front end is the URL from the uploaded picture.
 **Notes 14**
 I improved the code creating a loading state that is replaced by the rendered state using useEffect.
 I also fixed a backend bug where the img values were duplicated and a frontend bug where rarity showed error while having several types.
+
+**Notes 15**
+TODO: Create a working Dropzone, upload to cloudinary when a png is dropped, receive a URL, set the URL as the value of Image

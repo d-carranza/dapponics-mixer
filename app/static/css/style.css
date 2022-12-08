@@ -67,7 +67,7 @@ body {
 }
 
 .traitinputs {
-  padding-top: 61px;
+  margin-top: -25px;
 }
 
 .textinput {
@@ -172,10 +172,15 @@ body {
 }
 
 .dropzone {
+  height: 122px;
+  width: 122px;
+  margin-left: 14px;
+  margin-bottom: 4px;
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   padding: 20px;
   border-width: 2px;
   border-radius: 2px;
@@ -185,7 +190,7 @@ body {
   transition: border 0.24s ease-in-out;
 }
 
-/* .focused {
+.focused {
   border-color: blue;
 }
 
@@ -195,4 +200,4 @@ body {
 
 .reject {
   border-color: red;
-}  */
+}

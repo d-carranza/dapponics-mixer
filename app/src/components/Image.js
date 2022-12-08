@@ -16,6 +16,7 @@ function Image(props) {
     const stateObject = { ...state };
     stateObject.attributes[typeIndex].traits[traitIndex].img =
       event.target.value;
+    // "dropzone";
     setState(stateObject);
   }
 
@@ -26,7 +27,7 @@ function Image(props) {
         className="textinput"
         value={state.attributes[typeIndex].traits[traitIndex].img}
         onChange={updateImg}
-        placeholder="Trait Img Url"
+        placeholder="// Trait Img Url"
       />
     </div>
   );
