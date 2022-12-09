@@ -170,35 +170,3 @@ body {
   text-align: center;
   font-size: 14px;
 }
-
-.dropzone {
-  height: 122px;
-  width: 122px;
-  margin-left: 14px;
-  margin-bottom: 4px;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  vertical-align: middle;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  border-width: 2px;
-  border-radius: 2px;
-  border-color: #e2e8f0;
-  border-style: dashed;
-  outline: none;
-  transition: border 0.24s ease-in-out;
-}
-
-.focused {
-  border-color: #63b3ed;
-}
-
-.accept {
-  border-color: #68d391;
-}
-
-.reject {
-  border-color: #fc8181;
-}

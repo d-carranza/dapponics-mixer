@@ -155,3 +155,5 @@ I also fixed a backend bug where the img values were duplicated and a frontend b
 
 **Notes 15**
 TODO: Create a working Dropzone, upload to cloudinary when a png is dropped, receive a URL, set the URL as the value of Image
+
+I need to read the documentation of react-dropzone in https://react-dropzone.js.org/

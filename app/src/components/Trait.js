@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "./Image";
+import Dropzone from "./Dropzone";
 
 function Trait(props) {
   const { state, setState, typeIndex, traitIndex } = props;
@@ -32,13 +32,17 @@ function Trait(props) {
         </button>
       </div>
       <div className="traitinputs">
-        <Image
-          key={traitIndex}
-          state={state}
-          setState={setState}
-          typeIndex={typeIndex}
-          traitIndex={traitIndex}
-        />
+        <div>
+          <Dropzone
+            key={traitIndex}
+            state={state}
+            setState={setState}
+            typeIndex={typeIndex}
+            traitIndex={traitIndex}
+            accept={{ "image/png": [".png"] }}
+            maxFiles={1} // BUG: Acepts other files and more than 1
+          />
+        </div>
         <div>
           <input
             className="textinput"
