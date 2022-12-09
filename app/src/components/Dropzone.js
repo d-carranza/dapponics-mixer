@@ -1,5 +1,6 @@
 import React, { useCallback, forwardRef, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+
 import styled from "styled-components";
 
 // Define styles for the dropzone
@@ -32,7 +33,15 @@ const Container = styled.div`
 
 // DROPZONE COMPONENT
 function Dropzone(props) {
-  const { state, setState, typeIndex, traitIndex, accept, maxFiles } = props;
+  const {
+    state,
+    setState,
+    typeIndex,
+    traitIndex,
+    accept,
+    maxFiles,
+    showPreview,
+  } = props;
 
   // TODO: If state has already an image, prepopulate the dropzone
 
@@ -64,7 +73,7 @@ function Dropzone(props) {
         console.log(file);
 
         const imgInput = "default_URL"; // TODO: Replace imgInput with cloudinary URL
-        // TODO: Update the div style with the png image from URL
+        // TODO: showPreview from URL Thumb (Thumbnail)
         return updateImg(imgInput);
       };
       reader.readAsArrayBuffer(file);
