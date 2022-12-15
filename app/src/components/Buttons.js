@@ -113,17 +113,16 @@ function Buttons(props) {
     const jsonMetadata = JSON.stringify(metadata);
     console.log("Collection's metadata.json:", jsonMetadata);
 
-    // 2. From the metadata, create all the tokens and buffer the collection in the local storage
+    // 2. From the metadata, create all the tokens and buffer the collection
+    let i = 1;
+    const allTokens = [];
 
     // For each metadata's attribute, find the same attribute in the state
     // Then find the same trait and push it's img in the img array
-    let i = 1;
-    const tokenArray = [0];
     for (const token of metadata) {
       const tokenbase64pnglist = [];
       const attributes = token.attributes;
       const keys = Object.keys(attributes);
-
       for (const key of keys) {
         for (const stateAttrib of state.attributes) {
           if (stateAttrib.trait_type == key) {
@@ -135,7 +134,7 @@ function Buttons(props) {
         }
       }
 
-      // Create a group of files with the selected traits
+      // Create an array of layers for each token
       const tokenLayers = [];
       let tokenLayer = 1;
       for (const image of tokenbase64pnglist) {
@@ -157,9 +156,10 @@ function Buttons(props) {
         tokenLayer++;
         tokenLayers.push(file);
       }
+      console.log(`Token_${i}'s .png layers:`, tokenLayers);
 
-      // MERGE PNGS and push result to tokenArray;
-      // Merge layers together for each token and save token name as "i"
+      //______[1] MERGE PNGS and push result to allTokens: Merge all layers together for each token and save token name as "i"______
+
       async function mergePngs() {
         // BUG me pide /image.png
         // console.log("123");
@@ -168,13 +168,15 @@ function Buttons(props) {
       }
       mergePngs();
 
-      // data:image/png;base64,iVBORw0KGgoAA...
+      //_______[2] Create folder and include every token.png___________________________________________________________________________
 
-      console.log(`Token_${i}'s .png layers:`, tokenLayers);
+      // ______________________________________________________________________________________________________________________________
       i++;
     }
 
     // 3. Download files
+
+    // // Download folder containing all tokens.png
 
     // // Download metadata.json file
     // const blob = new Blob([jsonMetadata], { type: "text/plain" });
