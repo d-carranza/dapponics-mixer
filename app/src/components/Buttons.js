@@ -1,4 +1,5 @@
 import React from "react";
+import mergeImages from "merge-images";
 
 function Buttons(props) {
   const { state } = props;
@@ -135,7 +136,7 @@ function Buttons(props) {
       }
 
       // Create a group of files with the selected traits
-      const filesGroup = [];
+      const tokenLayers = [];
       let tokenLayer = 1;
       for (const image of tokenbase64pnglist) {
         // Declare function
@@ -154,13 +155,22 @@ function Buttons(props) {
         //Usage example:
         const file = dataURLtoFile(image, `layer_${tokenLayer}.png`); //Name is not important here
         tokenLayer++;
-        filesGroup.push(file);
+        tokenLayers.push(file);
       }
 
-      // !TODO: combine layers and push result to tokenArray;
+      // MERGE PNGS and push result to tokenArray;
       // Merge layers together for each token and save token name as "i"
+      async function mergePngs() {
+        // BUG me pide /image.png
+        // console.log("123");
+        // const merged = await mergeImages(tokenLayers);
+        // console.log(merged);
+      }
+      mergePngs();
 
-      console.log(`Token_${i}'s .png layers:`, filesGroup);
+      // data:image/png;base64,iVBORw0KGgoAA...
+
+      console.log(`Token_${i}'s .png layers:`, tokenLayers);
       i++;
     }
 
