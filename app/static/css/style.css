@@ -67,7 +67,7 @@ body {
 }
 
 .traitinputs {
-  margin-top: -25px;
+  margin-top: 0px;
 }
 
 .textinput {
@@ -83,7 +83,16 @@ body {
   margin-bottom: 4px;
 }
 
+.pngPreview {
+  margin-left: -20px;
+  margin-top: -20px;
+  height: 118px;
+  width: 118px;
+}
+
 .removetrait {
+  margin-top: -125px;
+  margin-bottom: 100px;
   text-align: right;
 }
 

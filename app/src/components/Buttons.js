@@ -12,6 +12,7 @@ function Buttons(props) {
       if (attribute["trait_type"] == "") {
         nullValues = true;
       }
+
       for (let trait of attribute["traits"]) {
         if (trait["img"] == "" || trait["value"] == "" || trait["rarity"] == "")
           nullValues = true;
@@ -28,7 +29,7 @@ function Buttons(props) {
       total = 0;
       for (let trait of attribute["traits"]) {
         const rarity = parseInt(trait["rarity"]);
-        if (typeof rarity == "number") {
+        if (typeof rarity == "number" && rarity >= 0) {
           total += rarity;
         }
       }
@@ -52,12 +53,24 @@ function Buttons(props) {
     }
   }
 
+  function createCollection() {
+    const supply = state.supply;
+    const attributes = state.attributes;
+
+    console.log(`The supply is ${supply}`);
+    console.log(attributes);
+
+    // for each type select randomply one trait and overlay the pngs
+  }
+
   return (
     <div className="buttons">
       <button className="app-btn" onClick={saveChanges}>
         Save Changes
       </button>
-      <button className="app-btn">Create Collection</button>
+      <button className="app-btn" onClick={createCollection}>
+        Create Collection
+      </button>
     </div>
   );
 }

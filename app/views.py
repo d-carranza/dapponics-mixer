@@ -59,8 +59,8 @@ def save(request):
                     img=img
                 )
                 newtrait.save()
-        print("New input saved:")
-        print(attributes)
+        print("New input saved")
+        
         return JsonResponse({"message": "Traits saved successfully."}, status=201)
    
     return HttpResponseRedirect(reverse("login"))
@@ -126,8 +126,7 @@ def storedtraits(request):
         ]
         storedtraits["supply"] = ""
 
-    print("Fetched object:")
-    print(storedtraits)
+    print("Object fetched")
 
     # Returns parsed JSON
     jsonstate = json.dumps(storedtraits)

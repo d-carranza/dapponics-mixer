@@ -157,3 +157,14 @@ I also fixed a backend bug where the img values were duplicated and a frontend b
 TODO: Create a working Dropzone, upload to cloudinary when a png is dropped, receive a URL, set the URL as the value of Image
 
 I need to read the documentation of react-dropzone in https://react-dropzone.js.org/
+
+**Notes 16**
+(Upgraded the favicon and the title.)
+
+_Dropzone is working as intended now_ accepting only pngs and the max files possible is 1, everything else is rejected. When a png file is dropped then its converted to base 64 and that URL is included in the state as img input.
+
+I decided to not use cloudinary calls for this project because the right way to do it is from the backend and, if the png data is in the back enf I prefer to just store it in my database. I realised base64 strings are not too heavy and this way the app is going to be more efficient and faster.
+
+I also included a conditional render to show the preview of the pngs one droped and also show the user's pngs that are stored in the database when the state is loaded.
+
+Now is the time to start the output algorythm with the final traits and the metadata stored in files in the local storage and download them.

@@ -26,11 +26,6 @@ function Trait(props) {
 
   return (
     <div className="traits" key={traitIndex}>
-      <div className="removetrait">
-        <button name="removetrait" className="removebtn" onClick={removeTrait}>
-          ✕
-        </button>
-      </div>
       <div className="traitinputs">
         <div>
           <Dropzone
@@ -39,9 +34,16 @@ function Trait(props) {
             setState={setState}
             typeIndex={typeIndex}
             traitIndex={traitIndex}
-            accept={{ "image/png": [".png"] }}
-            maxFiles={1} // BUG: Acepts other files and more than 1
           />
+        </div>
+        <div className="removetrait">
+          <button
+            name="removetrait"
+            className="removebtn"
+            onClick={removeTrait}
+          >
+            ✕
+          </button>
         </div>
         <div>
           <input
