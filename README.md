@@ -168,3 +168,6 @@ I decided to not use cloudinary calls for this project because the right way to 
 I also included a conditional render to show the preview of the pngs one droped and also show the user's pngs that are stored in the database when the state is loaded.
 
 Now is the time to start the output algorythm with the final traits and the metadata stored in files in the local storage and download them.
+
+**Notes 17**
+The button create collection, after filtering the right Supply input now is able to create the json with all the metadata in regard to the token's traits and values. I used a function to randomly select the values following the given input rarity values.

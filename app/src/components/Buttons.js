@@ -1,7 +1,5 @@
 import React from "react";
 
-// TODO: Create Collection is ../../static/app/logic
-
 function Buttons(props) {
   const { state, setState } = props;
 
@@ -54,11 +52,79 @@ function Buttons(props) {
   }
 
   function createCollection() {
+    console.log("Inputed state:", state);
+
+    // Declare variables
     const supply = state.supply;
     const attributes = state.attributes;
 
-    console.log(`The supply is ${supply}`);
-    console.log(attributes);
+    // Filter valid input
+    if (supply == "" || supply <= 0) return console.info("Enter valid supply");
+
+    // 1. Create the whole colection's metadata
+    const metadata = [];
+
+    // For each element in the suply
+    for (let n = 0; n < supply; n++) {
+      const token = {};
+      const tokenAttributes = {};
+
+      // Get one trait for each type
+      for (const type of attributes) {
+        // Set the rarities and values for this trait_type
+        const rarities = [];
+        const values = [];
+        for (const trait of type.traits) {
+          rarities.push(trait.rarity);
+          values.push(trait.value);
+        }
+
+        // Return a value randomly
+        function randvalue() {
+          const ar = [];
+          let i,
+            sum = 0;
+          for (i = 0; i < rarities.length - 1; i++) {
+            sum += rarities[i] / 100.0;
+            ar[i] = sum;
+          }
+          const r = Math.random();
+          for (i = 0; i < ar.length && r >= ar[i]; i++);
+
+          console.log(rarities, values, r, values[i]); // Print for debugging
+
+          return values[i];
+        }
+
+        // Add value to type in the new token
+        tokenAttributes[type.trait_type] = randvalue();
+      }
+
+      // Define token number and attributes
+      token["token_id"] = parseInt(n) + 1;
+      token["attributes"] = tokenAttributes;
+
+      // Add token to the metadata array (collection trait list)
+      metadata.push(token);
+    }
+
+    // Parse metadata as JSON
+    const jsonMetadata = JSON.stringify(metadata);
+    console.log("Randomly created collection .json:", jsonMetadata);
+
+    // 2. From the metadata, create all the tokens and buffer the collection in the local storage
+
+    //   png = x;
+    //   for (item in metadata){
+    //     for (trait in collection.traits){
+    //       if (trait.name = item){
+    //         get png from trait.URL
+    //         overlap png in png
+    //       }
+    //     }
+    //   }
+    //   save png in png
+    // }
 
     // for each type select randomply one trait and overlay the pngs
   }

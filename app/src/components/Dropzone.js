@@ -33,7 +33,6 @@ const Container = styled.div`
 // DROPZONE COMPONENT
 function Dropzone(props) {
   const { state, setState, typeIndex, traitIndex } = props;
-  console.log(state);
   const [image, setImage] = useState([]);
   // TODO: If state has already an image, prepopulate the dropzone
 
@@ -46,7 +45,7 @@ function Dropzone(props) {
 
   const onDrop = useCallback((acceptedFiles) => {
     // Access to the file
-    acceptedFiles.forEach((file) => {
+    return acceptedFiles.forEach((file) => {
       const reader = new FileReader();
       reader.onload = () => {
         // Update img input
@@ -54,7 +53,6 @@ function Dropzone(props) {
       };
       reader.readAsDataURL(file);
     });
-    return console.log(state);
   }, []);
 
   const {
