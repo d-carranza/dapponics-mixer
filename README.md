@@ -171,3 +171,7 @@ Now is the time to start the output algorythm with the final traits and the meta
 
 **Notes 17**
 The button create collection, after filtering the right Supply input now is able to create the json with all the metadata in regard to the token's traits and values. I used a function to randomly select the values following the given input rarity values.
+
+Additionally, now I implemented the logic to create the arrays that contain the png layers for each token. The next step is to combine all the png layers in one png and save it in tokenArray.
+
+To finally put every element in tokenArray inside a folder, and right after download the folder, together with the metadata.json.
