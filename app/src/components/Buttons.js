@@ -1,7 +1,7 @@
 import React from "react";
 
 function Buttons(props) {
-  const { state, setState } = props;
+  const { state } = props;
 
   async function saveChanges() {
     // Input filter: inputs are not empty
@@ -52,7 +52,7 @@ function Buttons(props) {
   }
 
   function createCollection() {
-    console.log("Inputed state:", state);
+    console.log("Input state:", state);
 
     // Declare variables
     const supply = state.supply;
@@ -91,7 +91,7 @@ function Buttons(props) {
           const r = Math.random();
           for (i = 0; i < ar.length && r >= ar[i]; i++);
 
-          console.log(rarities, values, r, values[i]); // Print for debugging
+          // console.log(rarities, values, r, values[i]); // Print for debugging
 
           return values[i];
         }
@@ -110,23 +110,69 @@ function Buttons(props) {
 
     // Parse metadata as JSON
     const jsonMetadata = JSON.stringify(metadata);
-    console.log("Randomly created collection .json:", jsonMetadata);
+    console.log("Collection's metadata.json:", jsonMetadata);
 
     // 2. From the metadata, create all the tokens and buffer the collection in the local storage
 
-    //   png = x;
-    //   for (item in metadata){
-    //     for (trait in collection.traits){
-    //       if (trait.name = item){
-    //         get png from trait.URL
-    //         overlap png in png
-    //       }
-    //     }
-    //   }
-    //   save png in png
-    // }
+    // For each metadata's attribute, find the same attribute in the state
+    // Then find the same trait and push it's img in the img array
+    let i = 1;
+    const tokenArray = [0];
+    for (const token of metadata) {
+      const tokenbase64pnglist = [];
+      const attributes = token.attributes;
+      const keys = Object.keys(attributes);
 
-    // for each type select randomply one trait and overlay the pngs
+      for (const key of keys) {
+        for (const stateAttrib of state.attributes) {
+          if (stateAttrib.trait_type == key) {
+            for (const trait of stateAttrib.traits) {
+              if (trait.value == attributes[key])
+                tokenbase64pnglist.push(trait.img);
+            }
+          }
+        }
+      }
+
+      // Create a group of files with the selected traits
+      const filesGroup = [];
+      let tokenLayer = 1;
+      for (const image of tokenbase64pnglist) {
+        // Declare function
+        function dataURLtoFile(dataurl, filename) {
+          var arr = dataurl.split(","),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+          }
+          return new File([u8arr], filename, { type: mime });
+        }
+
+        //Usage example:
+        const file = dataURLtoFile(image, `layer_${tokenLayer}.png`); //Name is not important here
+        tokenLayer++;
+        filesGroup.push(file);
+      }
+
+      // !TODO: combine layers and push result to tokenArray;
+      // Merge layers together for each token and save token name as "i"
+
+      console.log(`Token_${i}'s .png layers:`, filesGroup);
+      i++;
+    }
+
+    // 3. Download files
+
+    // // Download metadata.json file
+    // const blob = new Blob([jsonMetadata], { type: "text/plain" });
+    // const url = URL.createObjectURL(blob);
+    // const link = document.createElement("a");
+    // link.download = "metadata.json";
+    // link.href = url;
+    // link.click();
   }
 
   return (
