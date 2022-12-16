@@ -51,7 +51,7 @@ export function createMetadata(supply, attributes) {
   return metadata;
 }
 
-export async function createTokens(state, metadata) {
+export async function createImages(state, metadata) {
   // 1. Get an array containing arrays for every token's trait dataURLs.
   const dataUrlArrays = [];
 
@@ -93,7 +93,7 @@ export async function createTokens(state, metadata) {
     const image = await mergeImages(dataUrlArray);
     allMergedTokens.push(image);
 
-    // console.log(image); // DEBUGGER CONSOLE.LOG
+    // console.log(image); // DEBUGGER CONSOLE.LOG DELETE LINE LATER
   }
   //The output of this function is the array wit all the merged token's dataUrls
   return allMergedTokens;

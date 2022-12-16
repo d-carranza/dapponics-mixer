@@ -1,5 +1,5 @@
 import React from "react";
-import { createMetadata, createTokens } from "../../static/app/utils";
+import { createMetadata, createImages } from "../../static/app/utils";
 
 function Buttons(props) {
   const { state } = props;
@@ -55,7 +55,7 @@ function Buttons(props) {
     console.log("New Collection's metadata:", jsonMetadata);
 
     // Create b64 tokens
-    const b64images = await createTokens(state, metadata);
+    const b64images = await createImages(state, metadata);
     console.log(`New Collection's tokens:`, b64images);
 
     // Create png images
@@ -64,6 +64,7 @@ function Buttons(props) {
     for (const b64image of b64images) {
       // Declare function
       function dataURLtoFile(dataurl, filename) {
+        //WARNING: Very old and obsolete method
         var arr = dataurl.split(","),
           mime = arr[0].match(/:(.*?);/)[1],
           bstr = atob(arr[1]),
@@ -82,12 +83,17 @@ function Buttons(props) {
     }
     console.log(`New Collection's pngs:`, images);
 
-    // Download files
-    // 1. Push the file version of each token into a folder
-    // 2. When the folder is completed then push this folder and the metadata on other folder
-    // 3. Then download the folder
+    // _______DOWNLOAD FILES__________
 
-    // ________________________________________________
+    // 1 - Make a folder called "images"
+
+    // 2 - Drop every element from "images" array into the folder "images"
+
+    // 3 - Make a folder called "mixer-collection"
+
+    // 4 - Drop "metadata.json" and "images" folder into the folder "mixer-collection"
+
+    // _____________Download metadata snippet________________
     // // Download metadata.json file
     // const blob = new Blob([jsonMetadata], { type: "text/plain" });
     // const url = URL.createObjectURL(blob);
@@ -95,7 +101,7 @@ function Buttons(props) {
     // link.download = "metadata.json";
     // link.href = url;
     // link.click();
-    // ________________________________________________
+    // ______________________________________________________
   }
 
   return (
