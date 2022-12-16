@@ -176,7 +176,7 @@ Additionally, now I implemented the logic to create the arrays that contain the 
 
 To finally put every element in tokenArray inside a folder, and right after download the folder, together with the metadata.json.
 
-**Notes18**
+**Notes 18**
 For merging images I will need to learn to use Canvas. Before installing this module, I cleaned my package.json dependencies leaving only the 2 I use for the dropzone: react-dropzone and styled-components.
 
 The layout of the code is more tidy now, I worked on adding sintactic sugar in the functions inside the buttons component and also I created utils.js where im going to define the functions needed for the "create collection" button.
@@ -185,3 +185,35 @@ So far I already defined createMetadata, createLayeredTokens and now I'm working
 Installed merge-images, node-canvas and path dependencies.
 
 Bug fixed for the remove buttons now modifying the state arrays using splice instead of pop, removing the target elements and not the last elements of the array.
+
+**Notes 19**
+Ok, progress. I know how to merge the pngs. I need to input the array with the base64urldata into the mergeImages() function.
+
+Now, before advancing more on that area I need to think if the metadata structure is the optimal. Maybe I improve the structure of the metadata from
+[{"token_id":1,"attributes":{"Left":"Green","Right":"Blue"}},{"token_id":2,"attributes":{"Left":"Green","Right":"Yellow"}}]
+
+to
+
+[{"token_id":1,"attributes":[
+{"trait_type":"Left","value":"Green"},
+{"trait_type":"Right","value":"Blue"}
+]},
+{"token_id":2,"attributes":[
+{"trait_type":"Left","value":"Green"},
+{"trait_type":"Right","value":"Yellow"}
+]}
+]
+
+Also, very important to consider for the final version of the app, if I'm going to implement a way to avoid duplicates in the collection. But this pottencially could create infinite loops if the supply number is higher than the maximun number of combinations.
+
+In the worst case, if the user wants to abuse and make infinite loops, this look is creater in their frontend. But regardless, I would like to have a way to prevent infinite loops.
+
+Lastly, I'm considering to simplify a couple of formulas merging them together, such as createLayeredTokens() + mergeLayeredTokens()
+
+**Notes 20**
+
+[x] Metadata structure Updated. TODO: Avoid duplicates in the metadata algorythm
+
+[x] Cleaned the formulas.
+
+[x] Now the merged tokens are gatthered in an array containing every token's .png image.
