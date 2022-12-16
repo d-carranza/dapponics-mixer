@@ -1,4 +1,5 @@
-// Functions needed to output the collection when Create button is clicked
+import mergeImages from "merge-images";
+import { Canvas, Image } from "canvas"; // BUGGED importing Canvas and Image
 
 export function mergeLayeredTokens(layeredTokens) {
   // The input of this function is an array with all the arrays of the pngs I need to merge
@@ -6,7 +7,18 @@ export function mergeLayeredTokens(layeredTokens) {
   for (const layeredToken of layeredTokens) {
     // Merge the layers (png files) contained on this array
     //
-    // "layeredToken" is an array with all the trait files for 1 token
+    const layers = [...layeredToken];
+    console.log("123");
+
+    // mergeImages is async https://www.youtube.com/watch?v=LW1i-axSoYE&ab_channel=KieCodes
+
+    // BUGGED Problem in the rooting of layers, is not app url or file pathing
+    // How can i solve this?
+
+    mergeImages(layers, { Canvas: Canvas, Image: Image }).then((image) => {
+      console.log(image);
+    });
+
     //
     //
     //

@@ -181,3 +181,5 @@ For merging images I will need to learn to use Canvas. Before installing this mo
 
 The layout of the code is more tidy now, I worked on adding sintactic sugar in the functions inside the buttons component and also I created utils.js where im going to define the functions needed for the "create collection" button.
 So far I already defined createMetadata, createLayeredTokens and now I'm working on mergeLayeredTokens, where I need to use Canvas.
+
+Installed merge-images, node-canvas and path dependencies.

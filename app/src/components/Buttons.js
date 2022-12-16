@@ -65,14 +65,13 @@ function Buttons(props) {
     const mergedTokens = mergeLayeredTokens(layeredTokens);
     console.log(`Collection's tokens:`, mergedTokens);
 
-    //_______[2] Create folder and include every token.png___________________________________________________________________________
+    //
 
-    // ______________________________________________________________________________________________________________________________
-
-    // 3. Download files
-
+    // _______________3. Download files________________
     // // Download folder containing all tokens.png
 
+    //
+    // ________________________________________________
     // // Download metadata.json file
     // const blob = new Blob([jsonMetadata], { type: "text/plain" });
     // const url = URL.createObjectURL(blob);
@@ -80,6 +79,7 @@ function Buttons(props) {
     // link.download = "metadata.json";
     // link.href = url;
     // link.click();
+    // ________________________________________________
   }
 
   return (
