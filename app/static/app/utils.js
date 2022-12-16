@@ -6,7 +6,7 @@ export function mergeLayeredTokens(layeredTokens) {
   for (const layeredToken of layeredTokens) {
     // Merge the layers (png files) contained on this array
     //
-    //
+    // "layeredToken" is an array with all the trait files for 1 token
     //
     //
     //
