@@ -1,6 +1,5 @@
 import mergeImages from "merge-images";
 
-// TODO: Avoid duplicates while creating the metadata (toggle?)
 export function createMetadata(supply, attributes) {
   const metadata = [];
   const generatedValues = new Set();
@@ -101,8 +100,6 @@ export async function createImages(state, metadata) {
   for (const dataUrlArray of dataUrlArrays) {
     const image = await mergeImages(dataUrlArray);
     allMergedTokens.push(image);
-
-    // console.log(image); // DEBUGGER CONSOLE.LOG DELETE LINE LATER
   }
   //The output of this function is the array wit all the merged token's dataUrls
   return allMergedTokens;

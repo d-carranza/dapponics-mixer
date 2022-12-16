@@ -50,8 +50,11 @@ function Buttons(props) {
     const attributes = state.attributes;
 
     // Filter valid input
+
     // TODO: get maxSupply from state using for and len()
+
     // if (supply >= maxSupply) console.info("Your supply is too large");
+
     if (supply == "" || supply <= 0) return console.info("Enter valid supply");
 
     // Create  metadata
