@@ -20,7 +20,7 @@ function Trait(props) {
 
   function removeTrait() {
     const stateObject = { ...state };
-    stateObject.attributes[typeIndex].traits.pop(traitIndex); // BUG: It pops the last one always
+    stateObject.attributes[typeIndex].traits.splice(traitIndex, 1);
     setState(stateObject);
   }
 

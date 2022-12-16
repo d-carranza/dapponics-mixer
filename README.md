@@ -183,3 +183,5 @@ The layout of the code is more tidy now, I worked on adding sintactic sugar in t
 So far I already defined createMetadata, createLayeredTokens and now I'm working on mergeLayeredTokens, where I need to use Canvas.
 
 Installed merge-images, node-canvas and path dependencies.
+
+Bug fixed for the remove buttons now modifying the state arrays using splice instead of pop, removing the target elements and not the last elements of the array.

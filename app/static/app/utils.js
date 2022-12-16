@@ -1,34 +1,14 @@
 import mergeImages from "merge-images";
-import { Canvas, Image } from "canvas"; // BUGGED importing Canvas and Image
 
-export function mergeLayeredTokens(layeredTokens) {
+export async function mergeLayeredTokens(layeredTokens) {
   // The input of this function is an array with all the arrays of the pngs I need to merge
   const allMergedTokens = [];
   for (const layeredToken of layeredTokens) {
     // Merge the layers (png files) contained on this array
-    //
-    const layers = [...layeredToken];
-    console.log("123");
+    // Pathing.. maybe I need to put the images somethere to be find
+    const image = await mergeImages([...layeredToken]);
+    console.log(image);
 
-    // mergeImages is async https://www.youtube.com/watch?v=LW1i-axSoYE&ab_channel=KieCodes
-
-    // BUGGED Problem in the rooting of layers, is not app url or file pathing
-    // How can i solve this?
-
-    mergeImages(layers, { Canvas: Canvas, Image: Image }).then((image) => {
-      console.log(image);
-    });
-
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
     // Push the resulted file to allMergedTokens
   }
   return allMergedTokens; //The output of this function is the array wit all the merged tokens

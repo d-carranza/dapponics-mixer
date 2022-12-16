@@ -22,7 +22,7 @@ function Type(props) {
 
   function removeType() {
     const stateObject = { ...state };
-    stateObject.attributes.pop(typeIndex); // BUG: It pops the last one always
+    stateObject.attributes.splice(typeIndex, 1);
     setState(stateObject);
   }
 
