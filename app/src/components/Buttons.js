@@ -17,6 +17,8 @@ function Buttons(props) {
     }
     if (nullValues == true) return alert("Some fields are empty");
 
+    // TODO: Input filter: Every trait in a same type must be a different string
+
     // Input filter: rarity total must add 100
     let rarityIsValid = false;
     let total = 0;
@@ -48,7 +50,8 @@ function Buttons(props) {
     const attributes = state.attributes;
 
     // Filter valid input
-    // TODO: "Your supply is larger than your collection's combinations";
+    // TODO: get maxSupply from state using for and len()
+    // if (supply >= maxSupply) console.info("Your supply is too large");
     if (supply == "" || supply <= 0) return console.info("Enter valid supply");
 
     // Create  metadata

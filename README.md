@@ -245,3 +245,5 @@ Every trait in a same type must be a different string
 max supply = a + b + c... (being the trait number for each type)
 
 TODO: Improve the user feedback with noninvasive temporal popups (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
+
+Note: Even after filtering input, there is a chance that if the user clicks CreateColleciton button before SaveChanges after the user inputed same values for many traits and the Suply is close to the maxSupply, an infinite loop may happen. To avoid this I encourage users to always click SaveChanges and not missuse the app.
