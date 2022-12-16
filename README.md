@@ -211,7 +211,6 @@ In the worst case, if the user wants to abuse and make infinite loops, this look
 Lastly, I'm considering to simplify a couple of formulas merging them together, such as createLayeredTokens() + mergeLayeredTokens()
 
 **Notes 20**
-
 [x] Metadata structure Updated. TODO: Avoid duplicates in the metadata algorythm
 
 [x] Cleaned the formulas.
@@ -219,5 +218,16 @@ Lastly, I'm considering to simplify a couple of formulas merging them together, 
 [x] Now the merged tokens are gatthered in an array containing every token's .png image.
 
 **Notes 21**
-
 I used JSZip and FileSaver libraries for structuring my zipfile and download the output of the app, it took a long time to get to know these libraries after I learned and tried to download in the traditional way creating new bloabs and clicking the link in the invisible anchor tag. And freeing from memory the URL and the anchortag after. I like these libraries so much as they are simple and highly efficient.
+
+**Notes22**
+Zip download sintaxis fleshed out.
+
+Clean the dataURLtoFile function, note that atob is only deprecated in node but works fine in the DOM.
+
+Note that the metadata is a unique json file containing the metadata of all the tokens while the images folder contains a png file for each token. For further usage, the specific metadata of each token can be obtained from the metadata.json file by searching token_id number.
+
+**Notes 23**
+Idea of improvement 1: Avoid duplicates in the collection while creating the metadata, every time a new token created already existed is created again.
+
+Idea of improvement 2: If duplicates are avoided I need to prevent infinity loops if the supply is larger than the collection's possible combinations.

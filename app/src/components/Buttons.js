@@ -54,11 +54,9 @@ function Buttons(props) {
     // Create  metadata
     const metadata = createMetadata(supply, attributes);
     const jsonMetadata = JSON.stringify(metadata);
-    console.log("New Collection's metadata:", jsonMetadata);
 
     // Create b64 tokens
     const b64Images = await createImages(state, metadata);
-    // console.log(`New Collection's tokens:`, b64Images);
 
     // Convert to png images
     const pngImages = [];
@@ -66,37 +64,37 @@ function Buttons(props) {
     for (const b64Image of b64Images) {
       // Declare function
       function dataURLtoFile(dataurl, filename) {
-        //TODO: Replace newer function
-        var arr = dataurl.split(","),
-          mime = arr[0].match(/:(.*?);/)[1],
-          bstr = atob(arr[1]),
-          n = bstr.length,
-          u8arr = new Uint8Array(n);
+        const arr = dataurl.split(",");
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]); //atob is deprecated in node but not in the browser
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
         while (n--) {
           u8arr[n] = bstr.charCodeAt(n);
         }
         return new File([u8arr], filename, { type: mime });
       }
 
-      //Use function:
+      // Use function:
       const file = dataURLtoFile(b64Image, `${id}.png`);
       id++;
       pngImages.push(file);
     }
-    console.log(`New Collection's pngs:`, pngImages);
 
     // Download files with Jszip and FileSaver libraries
     const zip = new JSZip();
     zip.file("metadata.json", jsonMetadata); // Add metadata.json
     const img = zip.folder("images"); // Add ordered .pngs to "images" root
     let n = 1;
-    for (const pngImage of pngImages) {
-      img.file(`${n}.png`, pngImage, { base64: true });
-      n++;
-    }
-    zip.generateAsync({ type: "blob" }).then(function (content) {
-      saveAs(content, "mixer-collection");
-    });
+    for (const pngImage of pngImages)
+      img.file(`${n}.png`, pngImage, { base64: true }), n++;
+
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "mixer-collection");
+
+    // Print some info about the download in the console
+    console.info("Downloaded metadata:", jsonMetadata);
+    console.info("Downloaded images", pngImages);
   }
 
   return (
