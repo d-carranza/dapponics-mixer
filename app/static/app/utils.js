@@ -3,6 +3,7 @@ import mergeImages from "merge-images";
 // TODO: Avoid duplicates while creating the metadata (toggle?)
 export function createMetadata(supply, attributes) {
   const metadata = [];
+  const generatedValues = new Set();
 
   for (let n = 0; n < supply; n++) {
     const token = {};
@@ -22,8 +23,8 @@ export function createMetadata(supply, attributes) {
       // Return a value randomly
       function randvalue() {
         const ar = [];
-        let i,
-          sum = 0;
+        let i;
+        let sum = 0;
         for (i = 0; i < rarities.length - 1; i++) {
           sum += rarities[i] / 100.0;
           ar[i] = sum;
@@ -38,15 +39,23 @@ export function createMetadata(supply, attributes) {
       // Add trait_type and value pairs to the attributes parent
       traitAttributes["trait_type"] = type.trait_type;
       traitAttributes["value"] = randvalue();
+
       tokenAttributes.push(traitAttributes);
     }
 
-    // Define token number and attributes
-    token["token_id"] = parseInt(n) + 1;
-    token["attributes"] = tokenAttributes;
+    // Avoid duplicates algorithm
+    let newValues = "";
+    for (const tokenAttribute of tokenAttributes)
+      newValues += tokenAttribute["value"];
+    if (generatedValues.has(newValues)) n--, console.info("duplicate avoided");
+    if (!generatedValues.has(newValues)) {
+      token["token_id"] = parseInt(n) + 1; // Define token number
+      token["attributes"] = tokenAttributes; // Define token attributes
+      metadata.push(token); // Add token to the metadata
 
-    // Add token to the metadata array (collection trait list)
-    metadata.push(token);
+      // Add newValues to generatedValues set
+      generatedValues.add(newValues);
+    }
   }
   return metadata;
 }

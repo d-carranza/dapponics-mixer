@@ -231,3 +231,17 @@ Note that the metadata is a unique json file containing the metadata of all the 
 Idea of improvement 1: Avoid duplicates in the collection while creating the metadata, every time a new token created already existed is created again.
 
 Idea of improvement 2: If duplicates are avoided I need to prevent infinity loops if the supply is larger than the collection's possible combinations.
+
+**Notes 24**
+The app now succesfully avoids duplicates (meaning no tokens have the same trait values combinations).
+
+Now I need to cap the max supply, how? If the user sets all the traits with the same name value we can start a infinite loop again.
+
+_Rules to avoid infinite loops:_
+[ ] 1 - New input filter:
+Every trait in a same type must be a different string
+
+[ ] 2 - Set max supply permited:
+max supply = a + b + c... (being the trait number for each type)
+
+TODO: Improve the user feedback with noninvasive temporal popups (for example when notifying about the inputed values are wrong of if the rarities have any mistake)

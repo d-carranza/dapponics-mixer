@@ -94,7 +94,7 @@ function Buttons(props) {
 
     // Print some info about the download in the console
     console.info("Downloaded metadata:", jsonMetadata);
-    console.info("Downloaded images", pngImages);
+    console.info("Downloaded images:", pngImages);
   }
 
   return (
