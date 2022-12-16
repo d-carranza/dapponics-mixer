@@ -175,3 +175,6 @@ The button create collection, after filtering the right Supply input now is able
 Additionally, now I implemented the logic to create the arrays that contain the png layers for each token. The next step is to combine all the png layers in one png and save it in tokenArray.
 
 To finally put every element in tokenArray inside a folder, and right after download the folder, together with the metadata.json.
+
+**Notes18**
+For merging images I will need to learn to use Canvas. Before installing this module, I cleaned my package.json dependencies leaving only the 2 I use for the dropzone: react-dropzone and styled-components.
