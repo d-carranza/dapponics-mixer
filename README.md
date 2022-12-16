@@ -217,3 +217,7 @@ Lastly, I'm considering to simplify a couple of formulas merging them together, 
 [x] Cleaned the formulas.
 
 [x] Now the merged tokens are gatthered in an array containing every token's .png image.
+
+**Notes 21**
+
+I used JSZip and FileSaver libraries for structuring my zipfile and download the output of the app, it took a long time to get to know these libraries after I learned and tried to download in the traditional way creating new bloabs and clicking the link in the invisible anchor tag. And freeing from memory the URL and the anchortag after. I like these libraries so much as they are simple and highly efficient.

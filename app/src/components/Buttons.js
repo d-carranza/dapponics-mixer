@@ -1,5 +1,7 @@
 import React from "react";
 import { createMetadata, createImages } from "../../static/app/utils";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 function Buttons(props) {
   const { state } = props;
@@ -46,7 +48,7 @@ function Buttons(props) {
     const attributes = state.attributes;
 
     // Filter valid input
-    TODO: "Your supply is larger than your collection's combinations";
+    // TODO: "Your supply is larger than your collection's combinations";
     if (supply == "" || supply <= 0) return console.info("Enter valid supply");
 
     // Create  metadata
@@ -55,16 +57,16 @@ function Buttons(props) {
     console.log("New Collection's metadata:", jsonMetadata);
 
     // Create b64 tokens
-    const b64images = await createImages(state, metadata);
-    console.log(`New Collection's tokens:`, b64images);
+    const b64Images = await createImages(state, metadata);
+    // console.log(`New Collection's tokens:`, b64Images);
 
-    // Create png images
-    const images = [];
+    // Convert to png images
+    const pngImages = [];
     let id = 1;
-    for (const b64image of b64images) {
+    for (const b64Image of b64Images) {
       // Declare function
       function dataURLtoFile(dataurl, filename) {
-        //WARNING: Very old and obsolete method
+        //TODO: Replace newer function
         var arr = dataurl.split(","),
           mime = arr[0].match(/:(.*?);/)[1],
           bstr = atob(arr[1]),
@@ -77,31 +79,24 @@ function Buttons(props) {
       }
 
       //Use function:
-      const file = dataURLtoFile(b64image, `${id}.png`);
+      const file = dataURLtoFile(b64Image, `${id}.png`);
       id++;
-      images.push(file);
+      pngImages.push(file);
     }
-    console.log(`New Collection's pngs:`, images);
+    console.log(`New Collection's pngs:`, pngImages);
 
-    // _______DOWNLOAD FILES__________
-
-    // 1 - Make a folder called "images"
-
-    // 2 - Drop every element from "images" array into the folder "images"
-
-    // 3 - Make a folder called "mixer-collection"
-
-    // 4 - Drop "metadata.json" and "images" folder into the folder "mixer-collection"
-
-    // _____________Download metadata snippet________________
-    // // Download metadata.json file
-    // const blob = new Blob([jsonMetadata], { type: "text/plain" });
-    // const url = URL.createObjectURL(blob);
-    // const link = document.createElement("a");
-    // link.download = "metadata.json";
-    // link.href = url;
-    // link.click();
-    // ______________________________________________________
+    // Download files with Jszip and FileSaver libraries
+    const zip = new JSZip();
+    zip.file("metadata.json", jsonMetadata); // Add metadata.json
+    const img = zip.folder("images"); // Add ordered .pngs to "images" root
+    let n = 1;
+    for (const pngImage of pngImages) {
+      img.file(`${n}.png`, pngImage, { base64: true });
+      n++;
+    }
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+      saveAs(content, "mixer-collection");
+    });
   }
 
   return (
