@@ -178,3 +178,6 @@ To finally put every element in tokenArray inside a folder, and right after down
 
 **Notes18**
 For merging images I will need to learn to use Canvas. Before installing this module, I cleaned my package.json dependencies leaving only the 2 I use for the dropzone: react-dropzone and styled-components.
+
+The layout of the code is more tidy now, I worked on adding sintactic sugar in the functions inside the buttons component and also I created utils.js where im going to define the functions needed for the "create collection" button.
+So far I already defined createMetadata, createLayeredTokens and now I'm working on mergeLayeredTokens, where I need to use Canvas.
