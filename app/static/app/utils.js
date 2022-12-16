@@ -1,29 +1,17 @@
 import mergeImages from "merge-images";
 
-export async function mergeLayeredTokens(layeredTokens) {
-  // The input of this function is an array with all the arrays of the pngs I need to merge
-  const allMergedTokens = [];
-  for (const layeredToken of layeredTokens) {
-    // Merge the layers (png files) contained on this array
-    // Pathing.. maybe I need to put the images somethere to be find
-    const image = await mergeImages([...layeredToken]);
-    console.log(image);
-
-    // Push the resulted file to allMergedTokens
-  }
-  return allMergedTokens; //The output of this function is the array wit all the merged tokens
-}
-
+// TODO: Avoid duplicates while creating the metadata (toggle?)
 export function createMetadata(supply, attributes) {
   const metadata = [];
 
   for (let n = 0; n < supply; n++) {
     const token = {};
-    const tokenAttributes = {};
+    const tokenAttributes = [];
 
     // Get one trait for each type
     for (const type of attributes) {
       // Set the rarities and values for this trait_type
+      const traitAttributes = {};
       const rarities = [];
       const values = [];
       for (const trait of type.traits) {
@@ -44,12 +32,13 @@ export function createMetadata(supply, attributes) {
         for (i = 0; i < ar.length && r >= ar[i]; i++);
 
         // console.log(rarities, values, r, values[i]); // Print for debugging
-
         return values[i];
       }
 
-      // Add value to type in the new token
-      tokenAttributes[type.trait_type] = randvalue();
+      // Add trait_type and value pairs to the attributes parent
+      traitAttributes["trait_type"] = type.trait_type;
+      traitAttributes["value"] = randvalue();
+      tokenAttributes.push(traitAttributes);
     }
 
     // Define token number and attributes
@@ -62,50 +51,50 @@ export function createMetadata(supply, attributes) {
   return metadata;
 }
 
-export function createLayeredTokens(state, metadata) {
-  const allTokens = [];
+export async function createTokens(state, metadata) {
+  // 1. Get an array containing arrays for every token's trait dataURLs.
+  const dataUrlArrays = [];
 
-  // For each metadata's attribute, find the same attribute in the state
-  // Then find the same trait and push it's img in the img array
+  // For each metadata's attribute
   for (const token of metadata) {
-    const tokenbase64pnglist = [];
     const attributes = token.attributes;
-    const keys = Object.keys(attributes);
+    const tokenbase64pnglist = [];
+    const traitPairs = {};
+
+    for (const attribute of attributes) {
+      const key = attribute["trait_type"];
+      const value = attribute["value"];
+      traitPairs[key] = value;
+    }
+    const keys = Object.keys(traitPairs);
+
     for (const key of keys) {
+      // Find the same attribute in the state
       for (const stateAttrib of state.attributes) {
-        if (stateAttrib.trait_type == key) {
+        // Find the same trait
+        if (stateAttrib["trait_type"] == key) {
           for (const trait of stateAttrib.traits) {
-            if (trait.value == attributes[key])
-              tokenbase64pnglist.push(trait.img);
+            for (const attribute of attributes) {
+              if (trait["value"] == attribute["value"])
+                // Push it's img in the img array
+                tokenbase64pnglist.push(trait.img);
+            }
           }
         }
       }
     }
-
-    // Create an array of layers for each token
-    const tokenLayers = [];
-    let tokenLayer = 1;
-    for (const image of tokenbase64pnglist) {
-      // Declare function
-      function dataURLtoFile(dataurl, filename) {
-        var arr = dataurl.split(","),
-          mime = arr[0].match(/:(.*?);/)[1],
-          bstr = atob(arr[1]),
-          n = bstr.length,
-          u8arr = new Uint8Array(n);
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new File([u8arr], filename, { type: mime });
-      }
-
-      //Usage example:
-      const file = dataURLtoFile(image, `layer_${tokenLayer}.png`); //Name is not important here
-      tokenLayer++;
-      tokenLayers.push(file);
-    }
-    // console.log(`Token_${i}'s .png layers:`, tokenLayers);
-    allTokens.push(tokenLayers);
+    // And push the array to the whole collection
+    dataUrlArrays.push(tokenbase64pnglist);
   }
-  return allTokens;
+
+  // 2. Merge images to create the final image for every token
+  const allMergedTokens = [];
+  for (const dataUrlArray of dataUrlArrays) {
+    const image = await mergeImages(dataUrlArray);
+    allMergedTokens.push(image);
+
+    // console.log(image); // DEBUGGER CONSOLE.LOG
+  }
+  //The output of this function is the array wit all the merged token's dataUrls
+  return allMergedTokens;
 }

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  createMetadata,
-  createLayeredTokens,
-  mergeLayeredTokens,
-} from "../../static/app/utils";
+import { createMetadata, createTokens } from "../../static/app/utils";
 
 function Buttons(props) {
   const { state } = props;
@@ -45,32 +41,52 @@ function Buttons(props) {
     }
   }
 
-  function createCollection() {
+  async function createCollection() {
     const supply = state.supply;
     const attributes = state.attributes;
 
     // Filter valid input
+    TODO: "Your supply is larger than your collection's combinations";
     if (supply == "" || supply <= 0) return console.info("Enter valid supply");
 
-    // Create colection's metadata
+    // Create  metadata
     const metadata = createMetadata(supply, attributes);
     const jsonMetadata = JSON.stringify(metadata);
-    console.log("Collection's metadata:", jsonMetadata);
+    console.log("New Collection's metadata:", jsonMetadata);
 
-    // Create tokens from the metadata
-    const layeredTokens = createLayeredTokens(state, metadata);
-    console.log(`Collection's layered tokens:`, layeredTokens);
+    // Create b64 tokens
+    const b64images = await createTokens(state, metadata);
+    console.log(`New Collection's tokens:`, b64images);
 
-    // Merge tokens
-    const mergedTokens = mergeLayeredTokens(layeredTokens);
-    console.log(`Collection's tokens:`, mergedTokens);
+    // Create png images
+    const images = [];
+    let id = 1;
+    for (const b64image of b64images) {
+      // Declare function
+      function dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(","),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]),
+          n = bstr.length,
+          u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+      }
 
-    //
+      //Use function:
+      const file = dataURLtoFile(b64image, `${id}.png`);
+      id++;
+      images.push(file);
+    }
+    console.log(`New Collection's pngs:`, images);
 
-    // _______________3. Download files________________
-    // // Download folder containing all tokens.png
+    // Download files
+    // 1. Push the file version of each token into a folder
+    // 2. When the folder is completed then push this folder and the metadata on other folder
+    // 3. Then download the folder
 
-    //
     // ________________________________________________
     // // Download metadata.json file
     // const blob = new Blob([jsonMetadata], { type: "text/plain" });
