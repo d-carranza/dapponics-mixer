@@ -1,5 +1,4 @@
 import React from "react";
-import mergeImages from "merge-images";
 
 function Buttons(props) {
   const { state } = props;
@@ -159,14 +158,6 @@ function Buttons(props) {
       console.log(`Token_${i}'s .png layers:`, tokenLayers);
 
       //______[1] MERGE PNGS and push result to allTokens: Merge all layers together for each token and save token name as "i"______
-
-      async function mergePngs() {
-        // BUG me pide /image.png
-        // console.log("123");
-        // const merged = await mergeImages(tokenLayers);
-        // console.log(merged);
-      }
-      mergePngs();
 
       //_______[2] Create folder and include every token.png___________________________________________________________________________
 
