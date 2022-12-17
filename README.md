@@ -238,12 +238,14 @@ The app now succesfully avoids duplicates (meaning no tokens have the same trait
 Now I need to cap the max supply, how? If the user sets all the traits with the same name value we can start a infinite loop again.
 
 _Rules to avoid infinite loops:_
-[ ] 1 - New input filter:
+[x] 1 - New input filter:
 Every trait in a same type must be a different string
 
-[ ] 2 - Set max supply permited:
+[x] 2 - Set max supply permited:
 max supply = a + b + c... (being the trait number for each type)
 
-TODO: Improve the user feedback with noninvasive temporal popups (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
-
 Note: Even after filtering input, there is a chance that if the user clicks CreateColleciton button before SaveChanges after the user inputed same values for many traits and the Suply is close to the maxSupply, an infinite loop may happen. To avoid this I encourage users to always click SaveChanges and not missuse the app.
+
+TODO: Create a condition for the CreateCollection that requires to save changes first?
+
+TODO: Improve the user feedback with noninvasive temporal popups (for example when notifying about the inputed values are wrong of if the rarities have any mistake)

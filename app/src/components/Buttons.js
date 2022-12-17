@@ -8,20 +8,27 @@ function Buttons(props) {
 
   async function saveChanges() {
     // Input filter: inputs must not be empty
-    let nullValues = false;
     for (const attribute of state["attributes"]) {
-      if (attribute["trait_type"] == "") nullValues = true;
+      if (attribute["trait_type"] == "")
+        return alert("Some type fields are empty");
       for (const trait of attribute["traits"])
         if (trait["img"] == "" || trait["value"] == "" || trait["rarity"] == "")
-          nullValues = true;
+          return alert("Some trait fields are empty");
     }
-    if (nullValues == true) return alert("Some fields are empty");
 
-    // TODO: Input filter: Every trait in a same type must be a different string
+    // Input filter: Trait values in a same type must be unique
+    for (const type of state.attributes) {
+      const setValues = new Set();
+      for (const trait of type.traits) {
+        if (setValues.has(trait.value))
+          return alert("Trait values must be unique for each type set");
+        setValues.add(trait.value);
+      }
+    }
 
     // Input filter: rarity total must add 100
-    let rarityIsValid = false;
-    let total = 0;
+    let rarityIsValid = false,
+      total = 0;
     for (const attribute of state["attributes"]) {
       rarityIsValid = false;
       total = 0;
@@ -35,26 +42,25 @@ function Buttons(props) {
     if (rarityIsValid == false) return alert("Rarities must add up 100");
 
     // Fetch user inputs to the backend
-    if (nullValues == false && rarityIsValid == true) {
-      const response = await fetch("/save", {
-        method: "POST",
-        body: JSON.stringify({ ...state }),
-      });
-      const result = await response.json();
-      return console.info(result);
-    }
+    const response = await fetch("/save", {
+      method: "POST",
+      body: JSON.stringify({ ...state }),
+    });
+    const result = await response.json();
+    return console.info(result);
   }
 
   async function createCollection() {
     const supply = state.supply;
     const attributes = state.attributes;
 
-    // Filter valid input
-
-    // TODO: get maxSupply from state using for and len()
-
-    // if (supply >= maxSupply) console.info("Your supply is too large");
-
+    // Filter valid supply input
+    let maxSupply = 0;
+    for (const type of state.attributes) maxSupply += type.traits.length;
+    if (supply > maxSupply)
+      return alert(
+        `Supply is too large: Your collection has a maximum of ${maxSupply} unique combinations`
+      );
     if (supply == "" || supply <= 0) return console.info("Enter valid supply");
 
     // Create  metadata
