@@ -1,5 +1,10 @@
 import React from "react";
-import { createMetadata, createImages } from "../../static/app/utils";
+import {
+  areChangesSaved,
+  createMetadata,
+  createImages,
+  dataURLtoFile,
+} from "../../static/app/utils";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
@@ -10,10 +15,10 @@ function Buttons(props) {
     // Input filter: inputs must not be empty
     for (const attribute of state["attributes"]) {
       if (attribute["trait_type"] == "")
-        return alert("Some type fields are empty");
+        return alert("Empty values: Some type fields are empty.");
       for (const trait of attribute["traits"])
         if (trait["img"] == "" || trait["value"] == "" || trait["rarity"] == "")
-          return alert("Some trait fields are empty");
+          return alert("Empty values: Some trait fields are empty.");
     }
 
     // Input filter: Trait values in a same type must be unique
@@ -21,7 +26,9 @@ function Buttons(props) {
       const setValues = new Set();
       for (const trait of type.traits) {
         if (setValues.has(trait.value))
-          return alert("Trait values must be unique for each type set");
+          return alert(
+            "Duplicated values: Trait values must be unique for each type set."
+          );
         setValues.add(trait.value);
       }
     }
@@ -39,7 +46,8 @@ function Buttons(props) {
       if (total != 100) break;
       rarityIsValid = true;
     }
-    if (rarityIsValid == false) return alert("Rarities must add up 100");
+    if (rarityIsValid == false)
+      return alert("Incorrect rarities: Rarities must add up 100.");
 
     // Fetch user inputs to the backend
     const response = await fetch("/save", {
@@ -47,47 +55,40 @@ function Buttons(props) {
       body: JSON.stringify({ ...state }),
     });
     const result = await response.json();
-    return console.info(result);
+    return alert(result["message"]);
   }
 
   async function createCollection() {
     const supply = state.supply;
     const attributes = state.attributes;
 
+    // Require changes to be saved
+    const changesSaved = await areChangesSaved(state); // BUG: Right after save, if no reresh page gives same error
+    if (!changesSaved)
+      return alert("Save your changes before creating your collection.");
+
     // Filter valid supply input
-    let maxSupply = 0;
-    for (const type of state.attributes) maxSupply += type.traits.length;
+    let maxSupply = 1;
+    for (const type of state.attributes)
+      if (type.traits.length > 0) maxSupply *= type.traits.length;
     if (supply > maxSupply)
       return alert(
-        `Supply is too large: Your collection has a maximum of ${maxSupply} unique combinations`
+        `Supply too large: Your collection has a maximum of ${maxSupply} unique combinations.`
       );
-    if (supply == "" || supply <= 0) return console.info("Enter valid supply");
+    if (supply == "" || supply <= 0)
+      return alert("Invalid Supply: Enter a valid value.");
 
     // Create  metadata
     const metadata = createMetadata(supply, attributes);
     const jsonMetadata = JSON.stringify(metadata);
 
-    // Create b64 tokens
+    // Create and merge token's base64 images
     const b64Images = await createImages(state, metadata);
 
-    // Convert to png images
+    // Convert b64 to png images
     const pngImages = [];
     let id = 1;
     for (const b64Image of b64Images) {
-      // Declare function
-      function dataURLtoFile(dataurl, filename) {
-        const arr = dataurl.split(",");
-        const mime = arr[0].match(/:(.*?);/)[1];
-        const bstr = atob(arr[1]); //atob is deprecated in node but not in the browser
-        let n = bstr.length;
-        const u8arr = new Uint8Array(n);
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new File([u8arr], filename, { type: mime });
-      }
-
-      // Use function:
       const file = dataURLtoFile(b64Image, `${id}.png`);
       id++;
       pngImages.push(file);
@@ -103,10 +104,6 @@ function Buttons(props) {
 
     const content = await zip.generateAsync({ type: "blob" });
     saveAs(content, "mixer-collection");
-
-    // Print some info about the download in the console
-    console.info("Downloaded metadata:", jsonMetadata);
-    console.info("Downloaded images:", pngImages);
   }
 
   return (

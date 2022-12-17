@@ -1,5 +1,20 @@
 import mergeImages from "merge-images";
 
+export async function areChangesSaved(state) {
+  // Fetch the stored state from the database
+  const response = await fetch("/storedtraits", {
+    method: "POST",
+  });
+  const result = await response.json();
+  const storedState = await JSON.parse(result);
+
+  // Compare stored state with the current state and return true or false
+  const storedAttributes = JSON.stringify(storedState.attributes);
+  const currentAttributes = JSON.stringify(state.attributes);
+  if (storedAttributes == currentAttributes) return true;
+  return false;
+}
+
 export function createMetadata(supply, attributes) {
   const metadata = [];
   const generatedValues = new Set();
@@ -31,7 +46,6 @@ export function createMetadata(supply, attributes) {
         const r = Math.random();
         for (i = 0; i < ar.length && r >= ar[i]; i++);
 
-        // console.log(rarities, values, r, values[i]); // Print for debugging
         return values[i];
       }
 
@@ -103,4 +117,16 @@ export async function createImages(state, metadata) {
   }
   //The output of this function is the array wit all the merged token's dataUrls
   return allMergedTokens;
+}
+
+export function dataURLtoFile(dataurl, filename) {
+  const arr = dataurl.split(",");
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]); //atob is deprecated in node but not in the browser
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], filename, { type: mime });
 }

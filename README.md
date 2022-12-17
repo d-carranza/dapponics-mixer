@@ -248,4 +248,11 @@ Note: Even after filtering input, there is a chance that if the user clicks Crea
 
 TODO: Create a condition for the CreateCollection that requires to save changes first?
 
-TODO: Improve the user feedback with noninvasive temporal popups (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
+**Notes 25**
+I added a function areChangesSaved() that fetches the stored state from the database and then compares the stored state with the current state. It return frue or false.
+If false, it requires to save the changes before creating the collection. If true, user can download the collection.
+Now I avoided infinite loops.
+
+TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
+
+BUG: Right after save, if no reresh page gives same error after calling areChangesSaved, find out why and fix it
