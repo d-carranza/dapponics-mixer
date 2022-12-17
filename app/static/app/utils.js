@@ -4,7 +4,7 @@ export function createMetadata(supply, attributes) {
   const metadata = [];
   const generatedValues = new Set();
 
-  for (let n = 0; n < supply; n++) {
+  for (let n = 1; n <= supply; n++) {
     const token = {};
     const tokenAttributes = [];
 
@@ -48,7 +48,7 @@ export function createMetadata(supply, attributes) {
       newValues += tokenAttribute["value"];
     if (generatedValues.has(newValues)) n--, console.info("duplicate avoided");
     if (!generatedValues.has(newValues)) {
-      token["token_id"] = parseInt(n) + 1; // Define token number
+      token["token_id"] = String(n); // Define token number "string"
       token["attributes"] = tokenAttributes; // Define token attributes
       metadata.push(token); // Add token to the metadata
 
