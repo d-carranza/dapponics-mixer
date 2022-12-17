@@ -253,6 +253,9 @@ I added a function areChangesSaved() that fetches the stored state from the data
 If false, it requires to save the changes before creating the collection. If true, user can download the collection.
 Now I avoided infinite loops.
 
-TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
-
 BUG: Right after save, if no reresh page gives same error after calling areChangesSaved, find out why and fix it
+
+**Notes 26**
+Bug fixes. Now areChangesSaved work as intended
+
+TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)

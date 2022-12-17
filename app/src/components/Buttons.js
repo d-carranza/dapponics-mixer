@@ -63,7 +63,7 @@ function Buttons(props) {
     const attributes = state.attributes;
 
     // Require changes to be saved
-    const changesSaved = await areChangesSaved(state); // BUG: Right after save, if no reresh page gives same error
+    const changesSaved = await areChangesSaved(state);
     if (!changesSaved)
       return alert("Save your changes before creating your collection.");
 
