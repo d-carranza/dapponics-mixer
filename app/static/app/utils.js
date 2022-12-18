@@ -74,9 +74,9 @@ export function createMetadata(supply, attributes) {
 }
 
 export async function createImages(state, metadata) {
-  const jsonMetadata = JSON.stringify(metadata);
-
-  console.log(jsonMetadata);
+  // For debugging purposes
+  // const jsonMetadata = JSON.stringify(metadata);
+  // console.log(jsonMetadata);
 
   // 1. Get an array containing arrays for every token's trait dataURLs.
   const dataUrlArrays = [];
@@ -93,8 +93,6 @@ export async function createImages(state, metadata) {
       traitPairs[key] = value;
     }
     const keys = Object.keys(traitPairs);
-
-    console.log("state", state);
 
     // Find the same attribute in the state, then find the same trait
     for (const key of keys)
@@ -117,7 +115,6 @@ export async function createImages(state, metadata) {
   for (const dataUrlArray of dataUrlArrays) {
     const image = await mergeImages(dataUrlArray);
     allMergedTokens.push(image);
-    console.log(image);
   }
   //The output of this function is the array wit all the merged token's dataUrls
   return allMergedTokens;
