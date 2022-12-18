@@ -74,6 +74,10 @@ export function createMetadata(supply, attributes) {
 }
 
 export async function createImages(state, metadata) {
+  const jsonMetadata = JSON.stringify(metadata);
+
+  console.log(jsonMetadata);
+
   // 1. Get an array containing arrays for every token's trait dataURLs.
   const dataUrlArrays = [];
 
@@ -90,21 +94,20 @@ export async function createImages(state, metadata) {
     }
     const keys = Object.keys(traitPairs);
 
-    for (const key of keys) {
-      // Find the same attribute in the state
-      for (const stateAttrib of state.attributes) {
-        // Find the same trait
-        if (stateAttrib["trait_type"] == key) {
-          for (const trait of stateAttrib.traits) {
-            for (const attribute of attributes) {
-              if (trait["value"] == attribute["value"])
-                // Push it's img in the img array
+    console.log("state", state);
+
+    // Find the same attribute in the state, then find the same trait
+    for (const key of keys)
+      for (const stateAttrib of state.attributes)
+        if (stateAttrib["trait_type"] == key)
+          for (const trait of stateAttrib.traits)
+            for (const attribute of attributes)
+              if (
+                attribute["trait_type"] == key &&
+                attribute["value"] == trait["value"]
+              )
+                // When found, push it's img in the img array
                 tokenbase64pnglist.push(trait.img);
-            }
-          }
-        }
-      }
-    }
     // And push the array to the whole collection
     dataUrlArrays.push(tokenbase64pnglist);
   }

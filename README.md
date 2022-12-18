@@ -271,4 +271,4 @@ TODO: Improve the user feedback with noninvasive temporal alerts (for example wh
 **Notes 27**
 Found a serious backend bug. The traits fetched are not only the user's traits, but all the traits from all the users. _FIXED._
 
-Found a bug in the last testing, metadata creates correctly, but the images bugged. Image created does not correspond with metadata.
+Found a bug in the last testing, metadata creates correctly, but the images bugged. Image created does not correspond with metadata. _FIXED._
