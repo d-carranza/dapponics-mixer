@@ -67,10 +67,11 @@ def save(request):
 
 @csrf_exempt
 @login_required
-def storedtraits(request):
+def storedtraits(request): #BUG: traits fetched are not user's traits but all traits
     
     # Get user traits
     user = request.user
+    print("user", user)
 
     # Create empty object
     storedtraits = {}
@@ -93,7 +94,7 @@ def storedtraits(request):
             attribute["traits"] = []
 
             # Store the traits grouped by type
-            typetraits = Trait.objects.filter(type=type)
+            typetraits = Trait.objects.filter(user=user, type=type)
             for trait in typetraits:
                 traitobject = {}
 
