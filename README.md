@@ -271,4 +271,8 @@ Found a serious backend bug. The traits fetched are not only the user's traits, 
 
 Found a bug in the last testing, metadata creates correctly, but the images bugged. Image created does not correspond with metadata. _FIXED._
 
+**Notes 28**
+Testing2 was successful, I inputed the traits successfully and downloaded a collection of 10,000 unique images.
+No bugs noticed, worked smoothly.
+
 TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
