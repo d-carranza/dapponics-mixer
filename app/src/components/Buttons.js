@@ -97,18 +97,16 @@ function Buttons(props) {
       pngImages.push(file);
     }
 
-    // Stop downloads while debugging
+    // Download files with Jszip and FileSaver libraries
+    const zip = new JSZip();
+    zip.file("metadata.json", jsonMetadata); // Add metadata.json
+    const img = zip.folder("images"); // Add ordered .pngs to "images" root
+    let n = 1;
+    for (const pngImage of pngImages)
+      img.file(`${n}.png`, pngImage, { base64: true }), n++;
 
-    // // Download files with Jszip and FileSaver libraries
-    // const zip = new JSZip();
-    // zip.file("metadata.json", jsonMetadata); // Add metadata.json
-    // const img = zip.folder("images"); // Add ordered .pngs to "images" root
-    // let n = 1;
-    // for (const pngImage of pngImages)
-    //   img.file(`${n}.png`, pngImage, { base64: true }), n++;
-
-    // const content = await zip.generateAsync({ type: "blob" });
-    // saveAs(content, "mixer-collection");
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "mixer-collection");
   }
 
   return (
