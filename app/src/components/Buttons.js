@@ -86,6 +86,8 @@ function Buttons(props) {
     const metadata = createMetadata(supply, attributes);
     const jsonMetadata = JSON.stringify(metadata);
 
+    console.log(jsonMetadata);
+
     // Create and merge token's base64 images
     const b64Images = await createImages(state, metadata);
 
@@ -98,16 +100,18 @@ function Buttons(props) {
       pngImages.push(file);
     }
 
-    // Download files with Jszip and FileSaver libraries
-    const zip = new JSZip();
-    zip.file("metadata.json", jsonMetadata); // Add metadata.json
-    const img = zip.folder("images"); // Add ordered .pngs to "images" root
-    let n = 1;
-    for (const pngImage of pngImages)
-      img.file(`${n}.png`, pngImage, { base64: true }), n++;
+    // Stop downloads while debugging
 
-    const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, "mixer-collection");
+    // // Download files with Jszip and FileSaver libraries
+    // const zip = new JSZip();
+    // zip.file("metadata.json", jsonMetadata); // Add metadata.json
+    // const img = zip.folder("images"); // Add ordered .pngs to "images" root
+    // let n = 1;
+    // for (const pngImage of pngImages)
+    //   img.file(`${n}.png`, pngImage, { base64: true }), n++;
+
+    // const content = await zip.generateAsync({ type: "blob" });
+    // saveAs(content, "mixer-collection");
   }
 
   return (

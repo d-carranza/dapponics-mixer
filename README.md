@@ -266,9 +266,9 @@ Require user to modify default initial state before being able to create a colle
 
 Empty Type, Empty Trait edgecases are handled by the rarities filter so doesn't create a trouble.
 
-**Notes 27**
-Found a serious backend bug. The traits fetched are not only the user's traits, but all the traits from all the users.
-
-FIXED.
-
 TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
+
+**Notes 27**
+Found a serious backend bug. The traits fetched are not only the user's traits, but all the traits from all the users. _FIXED._
+
+Found a bug in the last testing, metadata creates correctly, but the images bugged. Image created does not correspond with metadata.

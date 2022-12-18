@@ -114,6 +114,7 @@ export async function createImages(state, metadata) {
   for (const dataUrlArray of dataUrlArrays) {
     const image = await mergeImages(dataUrlArray);
     allMergedTokens.push(image);
+    console.log(image);
   }
   //The output of this function is the array wit all the merged token's dataUrls
   return allMergedTokens;
