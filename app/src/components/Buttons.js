@@ -84,6 +84,7 @@ function Buttons(props) {
 
     // Create  metadata
     const metadata = createMetadata(supply, attributes);
+    const jsonMetadata = JSON.stringify(metadata);
 
     // Create and merge token's base64 images
     const b64Images = await createImages(state, metadata);

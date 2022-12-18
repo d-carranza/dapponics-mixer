@@ -74,10 +74,6 @@ export function createMetadata(supply, attributes) {
 }
 
 export async function createImages(state, metadata) {
-  // For debugging purposes
-  // const jsonMetadata = JSON.stringify(metadata);
-  // console.log(jsonMetadata);
-
   // 1. Get an array containing arrays for every token's trait dataURLs.
   const dataUrlArrays = [];
 
