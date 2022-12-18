@@ -256,6 +256,14 @@ Now I avoided infinite loops.
 BUG: Right after save, if no reresh page gives same error after calling areChangesSaved, find out why and fix it
 
 **Notes 26**
-Bug fixes. Now areChangesSaved work as intended
+Bug fixes.
+
+Now areChangesSaved work as intended
+
+Added a supply input filter to avoid user inputing decimals.
+
+Require user to modify default initial state before being able to create a collection.
+
+Empty Type, Empty Trait edgecases are handled by the rarities filter so doesn't create a trouble.
 
 TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)

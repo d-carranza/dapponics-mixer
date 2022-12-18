@@ -47,7 +47,7 @@ function Buttons(props) {
       rarityIsValid = true;
     }
     if (rarityIsValid == false)
-      return alert("Incorrect rarities: Rarities must add up 100.");
+      return alert("Incorrect rarities: Same type rarities must add up 100.");
 
     // Fetch user inputs to the backend
     const response = await fetch("/save", {
@@ -67,6 +67,10 @@ function Buttons(props) {
     if (!changesSaved)
       return alert("Save your changes before creating your collection.");
 
+    // Require user to modify default state
+    if (attributes[0].trait_type == "")
+      return alert("Enter your traits before creating your collection.");
+
     // Filter valid supply input
     let maxSupply = 1;
     for (const type of state.attributes)
@@ -75,7 +79,7 @@ function Buttons(props) {
       return alert(
         `Supply too large: Your collection has a maximum of ${maxSupply} unique combinations.`
       );
-    if (supply == "" || supply <= 0)
+    if (supply == "" || supply <= 0 || (supply * 2) % 2 != 0)
       return alert("Invalid Supply: Enter a valid value.");
 
     // Create  metadata
