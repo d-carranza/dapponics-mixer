@@ -60,7 +60,6 @@ function Dropzone(props) {
     accept: { "image/png": [".png"] },
   });
 
-  // TODO: If file exists return image
   return (
     <div className="container">
       <Container {...getRootProps({ isFocused, isDragAccept, isDragReject })}>

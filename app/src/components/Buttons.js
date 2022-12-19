@@ -13,11 +13,11 @@ function Buttons(props) {
 
   async function saveChanges() {
     // Input filter: inputs must not be empty
-    for (const attribute of state["attributes"]) {
-      if (attribute["trait_type"] == "")
+    for (const attribute of state.attributes) {
+      if (!attribute.trait_type)
         return alert("Empty values: Some type fields are empty.");
-      for (const trait of attribute["traits"])
-        if (trait["img"] == "" || trait["value"] == "" || trait["rarity"] == "")
+      for (const trait of attribute.traits)
+        if (!trait.img || !trait.value || !trait.rarity)
           return alert("Empty values: Some trait fields are empty.");
     }
 
@@ -34,19 +34,16 @@ function Buttons(props) {
     }
 
     // Input filter: rarity total must add 100
-    let rarityIsValid = false,
+    let total = 0;
+    for (const attribute of state.attributes) {
       total = 0;
-    for (const attribute of state["attributes"]) {
-      rarityIsValid = false;
-      total = 0;
-      for (const trait of attribute["traits"]) {
-        const rarity = parseInt(trait["rarity"]);
-        if (typeof rarity == "number" && rarity >= 0) total += rarity;
+      for (const trait of attribute.traits) {
+        const rarity = parseInt(trait.rarity);
+        if (typeof rarity === "number" && rarity >= 0) total += rarity;
       }
       if (total != 100) break;
-      rarityIsValid = true;
     }
-    if (rarityIsValid == false)
+    if (total != 100)
       return alert("Incorrect rarities: Same type rarities must add up 100.");
 
     // Fetch user inputs to the backend
@@ -55,7 +52,7 @@ function Buttons(props) {
       body: JSON.stringify({ ...state }),
     });
     const result = await response.json();
-    return alert(result["message"]);
+    return alert(result.message);
   }
 
   async function createCollection() {
@@ -68,7 +65,7 @@ function Buttons(props) {
       return alert("Save your changes before creating your collection.");
 
     // Require user to modify default state
-    if (attributes[0].trait_type == "")
+    if (!attributes[0].trait_type)
       return alert("Enter your traits before creating your collection.");
 
     // Filter valid supply input
@@ -79,7 +76,7 @@ function Buttons(props) {
       return alert(
         `Supply too large: Your collection has a maximum of ${maxSupply} unique combinations.`
       );
-    if (supply == "" || supply <= 0 || (supply * 2) % 2 != 0)
+    if (!supply || supply <= 0 || (supply * 2) % 2 != 0)
       return alert("Invalid Supply: Enter a valid value.");
 
     // Create  metadata
@@ -93,9 +90,9 @@ function Buttons(props) {
     const pngImages = [];
     let id = 1;
     for (const b64Image of b64Images) {
-      const file = dataURLtoFile(b64Image, `${id}.png`);
+      const blob = await dataURLtoFile(b64Image, `${id}.png`);
       id++;
-      pngImages.push(file);
+      pngImages.push(blob);
     }
 
     // Download files with Jszip and FileSaver libraries

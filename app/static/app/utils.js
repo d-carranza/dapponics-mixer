@@ -11,7 +11,7 @@ export async function areChangesSaved(state) {
   // Compare stored state with the current state and return true or false
   const storedAttributes = JSON.stringify(storedState.attributes);
   const currentAttributes = JSON.stringify(state.attributes);
-  if (storedAttributes == currentAttributes) return true;
+  if (storedAttributes === currentAttributes) return true;
   return false;
 }
 
@@ -50,8 +50,8 @@ export function createMetadata(supply, attributes) {
       }
 
       // Add trait_type and value pairs to the attributes parent
-      traitAttributes["trait_type"] = type.trait_type;
-      traitAttributes["value"] = randvalue();
+      traitAttributes.trait_type = type.trait_type;
+      traitAttributes.value = randvalue();
 
       tokenAttributes.push(traitAttributes);
     }
@@ -59,16 +59,16 @@ export function createMetadata(supply, attributes) {
     // Avoid duplicates algorithm
     let newValues = "";
     for (const tokenAttribute of tokenAttributes)
-      newValues += tokenAttribute["value"];
-    if (generatedValues.has(newValues)) n--, console.info("duplicate avoided");
-    if (!generatedValues.has(newValues)) {
-      token["token_id"] = String(n); // Define token number "string"
-      token["attributes"] = tokenAttributes; // Define token attributes
-      metadata.push(token); // Add token to the metadata
+      newValues += tokenAttribute.value;
 
-      // Add newValues to generatedValues set
-      generatedValues.add(newValues);
-    }
+    if (!generatedValues.has(newValues)) {
+      token.token_id = String(n); // Define token number "string"
+      token.attributes = tokenAttributes; // Define token attributes
+      metadata.push(token); // Add token to the metadata
+    } else n--, console.info("duplicate avoided");
+
+    // Add newValues to generatedValues set
+    generatedValues.add(newValues);
   }
   return metadata;
 }
@@ -84,8 +84,8 @@ export async function createImages(state, metadata) {
     const traitPairs = {};
 
     for (const attribute of attributes) {
-      const key = attribute["trait_type"];
-      const value = attribute["value"];
+      const key = attribute.trait_type;
+      const value = attribute.value;
       traitPairs[key] = value;
     }
     const keys = Object.keys(traitPairs);
@@ -93,12 +93,12 @@ export async function createImages(state, metadata) {
     // Find the same attribute in the state, then find the same trait
     for (const key of keys)
       for (const stateAttrib of state.attributes)
-        if (stateAttrib["trait_type"] == key)
+        if (stateAttrib.trait_type === key)
           for (const trait of stateAttrib.traits)
             for (const attribute of attributes)
               if (
-                attribute["trait_type"] == key &&
-                attribute["value"] == trait["value"]
+                attribute.trait_type === key &&
+                attribute.value === trait.value
               )
                 // When found, push it's img in the img array
                 tokenbase64pnglist.push(trait.img);
@@ -116,14 +116,9 @@ export async function createImages(state, metadata) {
   return allMergedTokens;
 }
 
-export function dataURLtoFile(dataurl, filename) {
-  const arr = dataurl.split(",");
-  const mime = arr[0].match(/:(.*?);/)[1];
-  const bstr = atob(arr[1]); //atob is deprecated in node but not in the browser
-  let n = bstr.length;
-  const u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new File([u8arr], filename, { type: mime });
+export async function dataURLtoFile(url, filename) {
+  const data = await fetch(url);
+  const blob = await data.blob();
+  blob.name = filename;
+  return blob;
 }
