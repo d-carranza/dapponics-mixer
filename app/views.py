@@ -67,7 +67,7 @@ def save(request):
 
 @csrf_exempt
 @login_required
-def storedtraits(request): #BUG: traits fetched are not user's traits but all traits
+def storedtraits(request): 
     
     # Get user traits
     user = request.user
