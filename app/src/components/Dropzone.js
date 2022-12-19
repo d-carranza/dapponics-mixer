@@ -27,7 +27,6 @@ const Container = styled.div`
 // DROPZONE COMPONENT
 function Dropzone(props) {
   const { state, setState, typeIndex, traitIndex } = props;
-  const [image, setImage] = useState([]);
 
   // Update state with the URL of the image
   function updateImg(imgInput) {
