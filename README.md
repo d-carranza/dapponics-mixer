@@ -70,7 +70,6 @@ After that, a simple "python manage.py runserver" in the terminal in the ../dapp
 **Below are the notes I wrote during the developing process of this project**
 
 **Notes 1.0**
-
 Once I initialized the Django project, the app, the initial model and the superuser
 -I need to create the HTML templates including a layout.
 -Is crucial to choose the right selection for the database models.
@@ -80,7 +79,6 @@ Once I initialized the Django project, the app, the initial model and the superu
 -Also I need to figure out how Cloudinary work, a web image host, potential candidate for this app.
 
 **Notes 2.0**
-
 Receiving user's input (User clicks save, database updates. When user logs in, the data is prepopulated in the fields )
 To polish the performance of this app im considering to store only the seed in the database and not the result after mixing.
 
@@ -91,11 +89,9 @@ This way the database will have a table containing all the traits for eash user.
 Providing user an output, data from the database is runned through the mixing algorithm n times (supply) and when algorithm is completed user downloads a zip named "<user>'s_Collection" that contains two folders, images with all the pngs and metadata with all the json.
 
 **Notes 3.0**
-
 HTML templates created, login logout register views added
 
 **Notes 4.0**
-
 Database models created.
 V1 for testing will consist in a table to input 4 traits.
 Following steps:
