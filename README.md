@@ -2,21 +2,11 @@
 
 #### Video Demo:
 
-#### Description: A web application that create NFT collections
+youtube video
 
-Must include:
+#### Description:
 
-### Disctinctiveness and Complexity:
-
-### What's contained in each file you created:
-
-### How to run my application:
-
-### Any other additional information the staff should know about your project:
-
-## If I've added any Python packages that need to be installed in order to run your web application, be sure to add them to a "requirements.txt" file!
-
-## +500 words
+A web application to generate NFT collections
 
 ### **Introduction:**
 
@@ -26,24 +16,58 @@ A NFT trait collection consists in a serie of tokens that has a set of traits, t
 
 There are 5 steps to create a NFT trait collection:
 
-1. An artist draws or designs every trait for every part separatelly in a transparent .png layer. For example a hair part can be blonde, brown or black traits, while an eyes part can be blue, green, sunglasses etc...
+1. An artist draws or designs every trait for every part separatelly in a transparent .png layer. For example a hair type can be blonde, brown or black traits, while an eyes type can be blue, green, sunglasses etc...
 2. Once every trait is designed, the creator must decide what is the rarity for every trait, a lower percentage of a given trait means it will appear less in the collection and as it will be more rare it will potentially have more collector value.
 3. Then the traits pass through an algorithm that creates n tokens png, being n the total supply, merging the layers for each randomly selected trait following the rarity percentages.
-4. At the same tame the tokens are created, the metadata (a .json file with all the part-trait pairs a given token has) is also stored next to the token .png
+4. At the same time the tokens are created, the metadata (a .json file with all the part-trait pairs a given token has) is also stored next to the token .png
 5. When the collection images and their respective metadata is set, this data is written inside a smart-contract and this contract is then deployed in the blockchain.
 6. Finally, interacting with this smartcontract (usually in a mint website), users can mint and create their own unique NFT to flex it in their wallet or benefit from its utility.
 
-In this project I will cover the step 2, 3 and 4. Dapponics NFT Mixer is going to be a web application where any user can register and create their own collection.
+In this project I cover the step 2, 3 and 4. Dapponics Mixer is going to be a web application where any user can register and create their own collection.
 
-The input this app will take is (1) the traits of the collection sorted by parts and layer order, (2) the rarity of every trait, and (3) the supply of the collection.
+The input this app take is (1) the traits of the collection sorted by type and layer order, (2) the rarity of every trait, and (3) the supply of the collection.
 
-Then this app will process the request and using an algorithm, traits will be randomly mixed to create all the tokens of the collection.
+Then this app processes the request and using an algorithm, traits are randomly mixed to create all the tokens of the collection.
 
-The output of this app will be a folder containing all the png and json files for every token. The inputs and the results will be saved in the database, so the user can come back any time to modify the parameters and mix the collection again, or download the collection files needed in the step 5.
+The output of this app is a zip folder containing the json file with the entire collection's metadata and a folder called "images" containing all the png files for every token.
+The inputs are be saved in the database, so the user can come back any time to modify the parameters and mix the collection again, or download the collection files needed in the step 5.
 
-To do that I will use Python and Django in the backend to manage the database and I will use JavaScript and React in the frontend to develop the webapp, initially I have in mind to make a Single Page Application.
+To do that I used Python and Django in the backend to manage the database and JavaScript and React in the frontend to develop the webapp as a Single Page Application.
 
-**Developing Process Notes**
+### Disctinctiveness and Complexity:
+
+I created a fully functional and useful responsive web application in which users can store their NFT-art trait layers in a session after register and log in, and they can generate a fully fledged collection as many times as they want downloading the final images and the metadata for every token of the collection in a zip file.
+
+For this project, aside of Javascript, Python and Django I had to learn React and how to manage components, render dynamic states and use effects. I had to master calling asynchronously to the backend sending or requesting data. And additionally I had to learn how to create the mixing and fetched api's algorithms, how to merge image files and how to buffer files and manage the client local storage as well as download files in the browser.
+Lastly I polished the user experience filtering the user input and providing feedback to guide the user towards a correct use of this appication.
+
+### What's contained in each file you created:
+
+As per the usual Django file structure we can find a project called mixer and an app called app. In this last app folder there are aditional files external to Django due to the React integration in this project. "webpack.config.js", "babel.config.json", "static/app/main.js", and "src/index.js" are the necessary files to make react work.
+
+In "src/components" you can find all the components I created. And in "static/app/utils.js" the functions that contain most of the logic I used in the Buttons component.
+
+In "templates/app" you can find a layout and the 3 other html views: One for register, other for login and the last one called mixer, where React takes over the div with id="app".
+
+In "package.json" and "package-lock.json" you can find all the libraries and dependencies included in this project.
+
+I used 5 external libraries:
+
+- "react-dropzone" and "styled-components" for creating the dropzone component and conditionally style it.
+
+- "merge-images" to merge pngs together avoiding the use of Canvas making the code and the process cleaner and more efficient.
+
+- "jszip" and "file-saver" to create and structure the file's tree in the local storage buffer followed by a zip download and a methodical free of the used memory.
+
+All the styles for this webapp are contained in "static/app/css".
+
+### How to run my application:
+
+Note that .gitignore ignores the node_modules as this directory is very heavy, so first of all, in the terminal, in the ../dapponics-mixer/mixer/app directory, the command "npm install" will download all the node_modules needed to run the app.
+
+After that, a simple "python manage.py runserver" in the terminal in the ../dapponics-mixer/mixer directory will give life to the server and accessing from any browser to the local URL will render the webapp.
+
+**Below are the notes I wrote during the developing process of this project**
 
 **Notes 1.0**
 
@@ -273,6 +297,5 @@ Found a bug in the last testing, metadata creates correctly, but the images bugg
 
 **Notes 28**
 Testing2 was successful, I inputed the traits successfully and downloaded a collection of 10,000 unique images.
-No bugs noticed, worked smoothly.
 
-TODO: Improve the user feedback with noninvasive temporal alerts (for example when notifying about the inputed values are wrong of if the rarities have any mistake)
+No bugs noticed, app works smoothly.
