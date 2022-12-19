@@ -28,7 +28,6 @@ const Container = styled.div`
 function Dropzone(props) {
   const { state, setState, typeIndex, traitIndex } = props;
   const [image, setImage] = useState([]);
-  // TODO: If state has already an image, prepopulate the dropzone
 
   // Update state with the URL of the image
   function updateImg(imgInput) {
