@@ -1,12 +1,8 @@
 # Dapponics Mixer Web App
 
-#### Video Demo:
+#### Video Demo: https://www.youtube.com/watch?v=l-LonpDWJ5g
 
-https://www.youtube.com/watch?v=l-LonpDWJ5g
-
-#### Description:
-
-A web application to generate NFT collections
+#### Description: A web application to generate NFT collections
 
 ### **Introduction:**
 
@@ -67,9 +63,9 @@ Note that .gitignore ignores the node_modules as this directory is very heavy, s
 
 After that, a simple "python manage.py runserver" in the terminal in the ../dapponics-mixer/mixer directory will give life to the server and accessing from any browser to the local URL will render the webapp.
 
-**Below are the notes I wrote during the developing process of this project**
+## **Development process**
 
-**Notes 1.0**
+### **Notes v1.0**
 Once I initialized the Django project, the app, the initial model and the superuser
 -I need to create the HTML templates including a layout.
 -Is crucial to choose the right selection for the database models.
@@ -78,7 +74,7 @@ Once I initialized the Django project, the app, the initial model and the superu
 -I need to rewatch the React class to make sure I use the framework properly.
 -Also I need to figure out how Cloudinary work, a web image host, potential candidate for this app.
 
-**Notes 2.0**
+### **Notes v2.0**
 Receiving user's input (User clicks save, database updates. When user logs in, the data is prepopulated in the fields )
 To polish the performance of this app im considering to store only the seed in the database and not the result after mixing.
 
@@ -88,10 +84,10 @@ This way the database will have a table containing all the traits for eash user.
 
 Providing user an output, data from the database is runned through the mixing algorithm n times (supply) and when algorithm is completed user downloads a zip named "<user>'s_Collection" that contains two folders, images with all the pngs and metadata with all the json.
 
-**Notes 3.0**
+### **Notes v3.0**
 HTML templates created, login logout register views added
 
-**Notes 4.0**
+### **Notes v4.0**
 Database models created.
 V1 for testing will consist in a table to input 4 traits.
 Following steps:
@@ -101,21 +97,21 @@ Following steps:
    For this I have to learn proper img file management and how to fetch with react
    TODO: Constrain user input to avoid bugs and provide feedback
 
-**Notes 5.0**
+### **Notes v5.0**
 I decided to start with the frontend first.
 Need to revamp all the structure of this project to include React and allow React to take control of the things happening in the DOM.
 In order to do that I installed npm modules and configured React.
 In the lecture we saw react embedded inside the HTML file, but to be more tidy this time I will be using react in independent javascript files.
 App.js in components will contain all the react code for the frontend. Now my goal is to make a great user friendly interface where user can input the different parts of the collection and every trait in each part.
 
-**Notes 6.0**
+### **Notes v6.0**
 TODO: Develop the frontend with the divs add/remove features and the buttons for save the data in the database and to mix the saved traits.
 Initially without the pictures.
 
-**Notes 7.0**
+### **Notes v7.0**
 Ok, React is going to take longer time than expected to learn and apply but is extremely useful so it will be worthit to take the time. For now I'm watching a React crash course and reading React's documentation.
 
-**Notes 8.0**
+### **Notes v8.0**
 This project is complex, but I'm going to beak it down to smaller steps and advance little by little.
 
 1 - Make frontend with React.js and Chakra UI
@@ -127,11 +123,11 @@ This project is complex, but I'm going to beak it down to smaller steps and adva
 
 To run the server I need to use "python manage.py runserver" and to compile the react app I need to use "npm run dev" in the app folder.
 
-**Notes 9.0**
+### **Notes v9.0**
 I allow myself to take longer time learning react as I consider it will be useful in my future
 Progress: Added Trait, Type, Input and Output components layout.
 
-**Notes 10.0**
+### **Notes v10.0**
 After two weeks...
 -The UI has the desired styles.
 -The components were fleshed out several times until every button and input rendered the desired html and updated the state as expected.
@@ -139,15 +135,15 @@ After two weeks...
 -I fixed the bugs that made the inputs to lose focus with every keystroke.
 -I improved the components spliting them in different files, exporting and importing them in different components / main App.
 
-**Notes 11.0**
+### **Notes v11.0**
 Save changes button successfully fetches the json version of the state to the backend, and now I can start managing the data from the frontend's input in the backend.
 The idea is replace the previous traits (if any) in the database with the new ones.
 
-**Notes 12.0**
+### **Notes v12.0**
 Save button now saves all the traits'values in the database except the supply.
 TODO: Prepopulate the state with the stored data from the data base.
 
-**Notes 13.0**
+### **Notes v13.0**
 I fixed a bug in the view initialstate loops and now the outputed object is iterable in the maps
 Added a null input filter in the save button function to avoid bugs when sending empty data to the database, now if the user leave empty fields an alert will prompt notifying the user that some fields are empty.
 
@@ -157,7 +153,7 @@ Today, the app successfully populetes its fiels with the saved data from the dat
 
 The challenge I encountered when trying to code the populate field's formulas is that fetching to the backend is asynchronous but in react I can't asynchronously render the page, so instead I made a default state as initial state and after fetching, the state is updated with setState.
 
-**Notes 13.5**
+### **Notes v13.5**
 The first part was the react.js frontend and he django.py backend talking to each other and managing how to display and store the information. Also how to manage the text inputs.
 
 The second part is the integration of image files into the data.
@@ -169,16 +165,16 @@ I would ng bloab to the back end as my table in the database just stores URL adr
 My first option is, each time user inputs a png I store it somewhere in the cloud and I receive the URL. That URL is send after to the back end when the save button is clicked.
 Then what is displayed in the front end is the URL from the uploaded picture.
 
-**Notes 14**
+### **Notes v14**
 I improved the code creating a loading state that is replaced by the rendered state using useEffect.
 I also fixed a backend bug where the img values were duplicated and a frontend bug where rarity showed error while having several types.
 
-**Notes 15**
+### **Notes v15**
 TODO: Create a working Dropzone, upload to cloudinary when a png is dropped, receive a URL, set the URL as the value of Image
 
 I need to read the documentation of react-dropzone in https://react-dropzone.js.org/
 
-**Notes 16**
+### **Notes v16**
 (Upgraded the favicon and the title.)
 
 _Dropzone is working as intended now_ accepting only pngs and the max files possible is 1, everything else is rejected. When a png file is dropped then its converted to base 64 and that URL is included in the state as img input.
@@ -189,14 +185,14 @@ I also included a conditional render to show the preview of the pngs one droped 
 
 Now is the time to start the output algorythm with the final traits and the metadata stored in files in the local storage and download them.
 
-**Notes 17**
+### **Notes v17**
 The button create collection, after filtering the right Supply input now is able to create the json with all the metadata in regard to the token's traits and values. I used a function to randomly select the values following the given input rarity values.
 
 Additionally, now I implemented the logic to create the arrays that contain the png layers for each token. The next step is to combine all the png layers in one png and save it in tokenArray.
 
 To finally put every element in tokenArray inside a folder, and right after download the folder, together with the metadata.json.
 
-**Notes 18**
+### **Notes v18**
 For merging images I will need to learn to use Canvas. Before installing this module, I cleaned my package.json dependencies leaving only the 2 I use for the dropzone: react-dropzone and styled-components.
 
 The layout of the code is more tidy now, I worked on adding sintactic sugar in the functions inside the buttons component and also I created utils.js where im going to define the functions needed for the "create collection" button.
@@ -206,7 +202,7 @@ Installed merge-images, node-canvas and path dependencies.
 
 Bug fixed for the remove buttons now modifying the state arrays using splice instead of pop, removing the target elements and not the last elements of the array.
 
-**Notes 19**
+### **Notes v19**
 Ok, progress. I know how to merge the pngs. I need to input the array with the base64urldata into the mergeImages() function.
 
 Now, before advancing more on that area I need to think if the metadata structure is the optimal. Maybe I improve the structure of the metadata from
@@ -230,29 +226,29 @@ In the worst case, if the user wants to abuse and make infinite loops, this look
 
 Lastly, I'm considering to simplify a couple of formulas merging them together, such as createLayeredTokens() + mergeLayeredTokens()
 
-**Notes 20**
+### **Notes v20**
 [x] Metadata structure Updated. TODO: Avoid duplicates in the metadata algorythm
 
 [x] Cleaned the formulas.
 
 [x] Now the merged tokens are gatthered in an array containing every token's .png image.
 
-**Notes 21**
+### **Notes v21**
 I used JSZip and FileSaver libraries for structuring my zipfile and download the output of the app, it took a long time to get to know these libraries after I learned and tried to download in the traditional way creating new bloabs and clicking the link in the invisible anchor tag. And freeing from memory the URL and the anchortag after. I like these libraries so much as they are simple and highly efficient.
 
-**Notes22**
+### **Notes v22**
 Zip download sintaxis fleshed out.
 
 Clean the dataURLtoFile function, note that atob is only deprecated in node but works fine in the DOM.
 
 Note that the metadata is a unique json file containing the metadata of all the tokens while the images folder contains a png file for each token. For further usage, the specific metadata of each token can be obtained from the metadata.json file by searching token_id number.
 
-**Notes 23**
+### **Notes v23**
 Idea of improvement 1: Avoid duplicates in the collection while creating the metadata, every time a new token created already existed is created again.
 
 Idea of improvement 2: If duplicates are avoided I need to prevent infinity loops if the supply is larger than the collection's possible combinations.
 
-**Notes 24**
+### **Notes v24**
 The app now succesfully avoids duplicates (meaning no tokens have the same trait values combinations).
 
 Now I need to cap the max supply, how? If the user sets all the traits with the same name value we can start a infinite loop again.
@@ -268,14 +264,14 @@ Note: Even after filtering input, there is a chance that if the user clicks Crea
 
 TODO: Create a condition for the CreateCollection that requires to save changes first?
 
-**Notes 25**
+### **Notes v25**
 I added a function areChangesSaved() that fetches the stored state from the database and then compares the stored state with the current state. It return frue or false.
 If false, it requires to save the changes before creating the collection. If true, user can download the collection.
 Now I avoided infinite loops.
 
 BUG: Right after save, if no reresh page gives same error after calling areChangesSaved, find out why and fix it
 
-**Notes 26**
+### **Notes v26**
 Bug fixes.
 
 Now areChangesSaved work as intended
@@ -286,12 +282,12 @@ Require user to modify default initial state before being able to create a colle
 
 Empty Type, Empty Trait edgecases are handled by the rarities filter so doesn't create a trouble.
 
-**Notes 27**
+### **Notes v27**
 Found a serious backend bug. The traits fetched are not only the user's traits, but all the traits from all the users. _FIXED._
 
 Found a bug in the last testing, metadata creates correctly, but the images bugged. Image created does not correspond with metadata. _FIXED._
 
-**Notes 28**
+### **Notes v28**
 Testing2 was successful, I inputed the traits successfully and downloaded a collection of 10,000 unique images.
 
 No bugs noticed, app works smoothly.
