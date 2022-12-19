@@ -4,7 +4,7 @@ function Supply(props) {
   const { state, setState } = props;
 
   function updateSupply(event) {
-    setState({
+    return setState({
       ...state,
       supply: event.target.value,
     });

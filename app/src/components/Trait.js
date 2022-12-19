@@ -8,20 +8,20 @@ function Trait(props) {
     const stateObject = { ...state };
     stateObject.attributes[typeIndex].traits[traitIndex].value =
       event.target.value;
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   function updateRarity(event) {
     const stateObject = { ...state };
     stateObject.attributes[typeIndex].traits[traitIndex].rarity =
       event.target.value;
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   function removeTrait() {
     const stateObject = { ...state };
     stateObject.attributes[typeIndex].traits.splice(traitIndex, 1);
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   return (

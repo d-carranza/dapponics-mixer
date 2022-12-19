@@ -7,7 +7,7 @@ function Type(props) {
   function updateType(event) {
     const stateObject = { ...state };
     stateObject.attributes[typeIndex].trait_type = event.target.value;
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   function addTrait() {
@@ -17,13 +17,13 @@ function Type(props) {
       value: "",
       rarity: "",
     });
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   function removeType() {
     const stateObject = { ...state };
     stateObject.attributes.splice(typeIndex, 1);
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   return (

@@ -4,15 +4,9 @@ import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 
 const getColor = (props) => {
-  if (props.isDragAccept) {
-    return "#68d391";
-  }
-  if (props.isDragReject) {
-    return "#fc8181";
-  }
-  if (props.isFocused) {
-    return "#63b3ed";
-  }
+  if (props.isDragAccept) return "#68d391";
+  if (props.isDragReject) return "#fc8181";
+  if (props.isFocused) return "#63b3ed";
   return "#e2e8f0";
 };
 
@@ -40,7 +34,7 @@ function Dropzone(props) {
   function updateImg(imgInput) {
     const stateObject = { ...state };
     stateObject.attributes[typeIndex].traits[traitIndex].img = imgInput;
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   const onDrop = useCallback((acceptedFiles) => {

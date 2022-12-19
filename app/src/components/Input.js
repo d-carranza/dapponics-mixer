@@ -17,7 +17,7 @@ function Input(props) {
         },
       ],
     });
-    setState(stateObject);
+    return setState(stateObject);
   }
 
   return (
