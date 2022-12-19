@@ -39,7 +39,7 @@ To do that I used Python and Django in the backend to manage the database and Ja
 I created a fully functional and useful responsive web application in which users can store their NFT-art trait layers in a session after register and log in, and they can generate a fully fledged collection as many times as they want downloading the final images and the metadata for every token of the collection in a zip file.
 
 For this project, aside of Javascript, Python and Django I had to learn React and how to manage components, render dynamic states and use effects. I had to master calling asynchronously to the backend sending or requesting data. And additionally I had to learn how to create the mixing and fetched api's algorithms, how to merge image files and how to buffer files and manage the client local storage as well as download files in the browser.
-Lastly I polished the user experience filtering the user input and providing feedback to guide the user towards a correct use of this appication.
+Lastly I polished the user experience filtering the user input and providing feedback to guide the user towards a correct use of this application.
 
 ### What's contained in each file you created:
 
