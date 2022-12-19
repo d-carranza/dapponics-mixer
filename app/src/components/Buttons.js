@@ -107,7 +107,7 @@ function Buttons(props) {
       img.file(`${n}.png`, pngImage, { base64: true }), n++;
 
     const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, "mixer-collection");
+    return saveAs(content, "mixer-collection");
   }
 
   return (
