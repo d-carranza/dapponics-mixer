@@ -320,3 +320,21 @@ Found a bug in the last testing, metadata creates correctly, but the images bugg
 Testing2 was successful, I inputed the traits successfully and downloaded a collection of 10,000 unique images.
 
 No bugs noticed, app works smoothly.
+
+### **Notes v29**
+
+The future for Dapponics Mixer application
+
+TODO: Create a Mixer V2 that doesn't store user's collection in a database and doesn't use sessions. Getting rid of Python and purely work in the client's frontend.
+
+TODO: Create a fetch system in batches to make it smoother.
+
+TODO: Provide info about the generated collection's traits distribution. (Optimally output's distribution matches input's distribution).
+
+Standard deviation = duplicateAvoidedCount / Supply
+
+TODO: Guide the user recommending a number of traits needed to get the desired token rarity distribution given a supply.
+
+TODO: Improve alerts UI, and overall UI.
+
+TODO: Integrate this application in the Dapponics Uniforge environment.
